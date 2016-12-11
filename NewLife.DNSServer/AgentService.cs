@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NewLife.Agent;
 using NewLife.Configuration;
 using NewLife.DNS;
+using NewLife.DNS.Entity;
 using NewLife.Net.DNS;
 
 namespace XDNS
@@ -104,13 +105,13 @@ namespace XDNS
                     r.Text = item.Address;
 
                     // 生产时间过期，并且最后更新时间也过期，才去更新
-                    if (item.TTL < now && item.LastUpdate < now)
+                    if (item.TTL < now && item.Next < now)
                     {
                         // 生存时间3分钟
                         r.TTL = new TimeSpan(0, 3, 0);
 
                         // 更新数据库记录，3分钟内不要再次去找
-                        item.LastUpdate = now.AddMinutes(3);
+                        item.Next = now.AddMinutes(3);
 
                         item.Hits++;
                         item.Update();
@@ -145,7 +146,7 @@ namespace XDNS
             if (e.Session != null)
             {
                 entity.UserIP = e.Session.Remote.EndPoint + "";
-                entity.ProtocolType = (Int32)e.Session.Remote.Type;
+                entity.ProtocolType = e.Session.Remote.Type;
             }
             if (rs.Answers != null && rs.Answers.Length > 0)
             {

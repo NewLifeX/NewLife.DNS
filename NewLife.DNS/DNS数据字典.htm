@@ -1,0 +1,708 @@
+﻿﻿<style type="text/css">
+<!--
+.caption td {
+    border:1px solid #666666;
+    font-weight:bold;
+    background-color: #CCCCCC;
+}
+.dbtable {
+    border:1px solid #666666;
+}
+.dbbody td {
+    border:1px solid #666666;
+}
+-->
+</style>
+由Stone/X生成于：2016-12-11 11:46:58 <BR />
+
+Visitor：
+<strong>访问者 （Visitor）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="75">默认值</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>次数 </td>
+    <td>Hits</td>
+    <td>Hits</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>最后域名 </td>
+    <td>LastDomainName</td>
+    <td>LastDomainName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>最后访问 </td>
+    <td>LastVisit</td>
+    <td>LastVisit</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建者 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新者 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+
+Rule：
+<strong>规则 （Rule）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="75">默认值</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>记录类型 </td>
+    <td>QueryType</td>
+    <td>QueryType</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>地址 </td>
+    <td>Address</td>
+    <td>Address</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>开始日期 </td>
+    <td>StartDate</td>
+    <td>StartDate</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>结束日期 </td>
+    <td>EndDate</td>
+    <td>EndDate</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>开始时间 </td>
+    <td>StartTime</td>
+    <td>StartTime</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>结束时间 </td>
+    <td>EndTime</td>
+    <td>EndTime</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>启用 </td>
+    <td>Enable</td>
+    <td>Enable</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>次数 </td>
+    <td>Hits</td>
+    <td>Hits</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>统计 </td>
+    <td>StatID</td>
+    <td>StatID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建者 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新者 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+
+Record：
+<strong>记录 （Record）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="75">默认值</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>记录类型 </td>
+    <td>QueryType</td>
+    <td>QueryType</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>地址 </td>
+    <td>Address</td>
+    <td>Address</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>生存时间 </td>
+    <td>TTL</td>
+    <td>TTL</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>父级 </td>
+    <td>Parent</td>
+    <td>Parent</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>次数 </td>
+    <td>Hits</td>
+    <td>Hits</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>统计 </td>
+    <td>StatID</td>
+    <td>StatID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>下次更新 </td>
+    <td>Next</td>
+    <td>Next</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建者 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新者 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+
+History：
+<strong>历史 （History）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="75">默认值</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>记录类型 </td>
+    <td>QueryType</td>
+    <td>QueryType</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>地址 </td>
+    <td>Address</td>
+    <td>Address</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>用户地址 </td>
+    <td>UserIP</td>
+    <td>UserIP</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>协议 </td>
+    <td>Protocol</td>
+    <td>Protocol</td>
+    <td>Int32</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建者 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>

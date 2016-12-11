@@ -21,3 +21,4 @@ Config/
 Plugins/
 *.log
 *.user
+/NewLife.DNS/set.config
