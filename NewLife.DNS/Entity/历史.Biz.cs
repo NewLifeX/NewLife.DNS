@@ -79,7 +79,8 @@ namespace NewLife.DNS.Entity
 
         #region 扩展属性﻿
         /// <summary>DNS类型</summary>
-        public QueryType DNSQueryType { get { return (QueryType)QueryType; } set { QueryType = (Int32)value; } }
+        [Map(__.Type)]
+        public QueryType QueryType { get { return (QueryType)Type; } set { Type = (Int32)value; } }
 
         /// <summary>协议类型</summary>
         [Map(__.Protocol)]

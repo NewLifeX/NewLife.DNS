@@ -4,7 +4,7 @@
  * 时间：2012-06-18 11:08:38
  * 版权：版权所有 (C) 新生命开发团队 2012
 */
-﻿using System;
+using System;
 using System.ComponentModel;
 using XCode;
 
@@ -79,60 +79,61 @@ namespace NewLife.DNS.Entity
         #endregion
 
         #region 扩展属性﻿
-        /// <summary>属性说明</summary>
-        public QueryType DNSQueryType { get { return (QueryType)QueryType; } set { QueryType = (Int32)value; } }
+        /// <summary>DNS类型</summary>
+        [Map(__.Type)]
+        public QueryType QueryType { get { return (QueryType)Type; } set { Type = (Int32)value; } }
         #endregion
 
         #region 扩展查询﻿
         /// <summary>根据记录类型、名称查找</summary>
-        /// <param name="querytype">记录类型</param>
+        /// <param name="type">记录类型</param>
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Record> FindAllByQueryTypeAndName(Int32 querytype, String name)
+        public static EntityList<Record> FindAllByQueryTypeAndName(Int32 type, String name)
         {
             //if (Meta.Count >= 1000)
             //    return FindAll(new String[] { _.QueryType, _.Name }, new Object[] { querytype, name });
             //else // 实体缓存
             //    return Meta.Cache.Entities.FindAll(e => e.QueryType == querytype && e.Name == name);
 
-            if ((QueryType)querytype != NewLife.DNS.QueryType.ANY)
+            if ((QueryType)type != QueryType.ANY)
             {
                 if (Meta.Count >= 1000)
-                    return FindAll(new String[] { _.QueryType, _.Name }, new Object[] { querytype, name });
+                    return FindAll(new String[] { _.Type, _.Name }, new Object[] { type, name });
                 else // 实体缓存
-                    return Meta.Cache.Entities.FindAll(e => e.QueryType == querytype && e.Name == name);
+                    return Meta.Cache.Entities.FindAll(e => e.Type == type && e.Name == name);
             }
             else
             {
                 if (Meta.Count >= 1000)
-                    return FindAll(_.Name, querytype);
+                    return FindAll(_.Name, type);
                 else // 实体缓存
                     return Meta.Cache.Entities.FindAll(e => e.Name == name);
             }
         }
 
         /// <summary>根据记录类型、地址查找</summary>
-        /// <param name="querytype">记录类型</param>
+        /// <param name="type">记录类型</param>
         /// <param name="address">地址</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Record> FindAllByQueryTypeAndAddress(Int32 querytype, String address)
+        public static EntityList<Record> FindAllByQueryTypeAndAddress(QueryType type, String address)
         {
             if (Meta.Count >= 1000)
-                return FindAll(new String[] { _.QueryType, _.Address }, new Object[] { querytype, address });
+                return FindAll(new String[] { _.Type, _.Address }, new Object[] { type, address });
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(e => e.QueryType == querytype && e.Address == address);
+                return Meta.Cache.Entities.FindAll(e => e.QueryType == type && e.Address == address);
         }
 
         /// <summary>根据记录类型、名称、地址查找</summary>
-        /// <param name="querytype">记录类型</param>
+        /// <param name="type">记录类型</param>
         /// <param name="name">名称</param>
         /// <param name="address">地址</param>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Record FindByQueryTypeAndNameAndAddress(Int32 querytype, String name, String address)
+        public static Record FindByQueryTypeAndNameAndAddress(Int32 type, String name, String address)
         {
-            return Find(new String[] { _.QueryType, _.Name, _.Address }, new Object[] { querytype, name, address });
+            return Find(new String[] { _.Type, _.Name, _.Address }, new Object[] { type, name, address });
         }
 
         /// <summary>根据ID查找</summary>

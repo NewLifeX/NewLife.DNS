@@ -41,16 +41,16 @@ namespace NewLife.DNS.Entity
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
-        private Int32 _QueryType;
-        /// <summary>记录类型</summary>
-        [DisplayName("记录类型")]
-        [Description("记录类型")]
+        private Int32 _Type;
+        /// <summary>类型</summary>
+        [DisplayName("类型")]
+        [Description("类型")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "QueryType", "记录类型", null, "int", 10, 0, false)]
-        public virtual Int32 QueryType
+        [BindColumn(3, "Type", "类型", null, "int", 10, 0, false)]
+        public virtual Int32 Type
         {
-            get { return _QueryType; }
-            set { if (OnPropertyChanging(__.QueryType, value)) { _QueryType = value; OnPropertyChanged(__.QueryType); } }
+            get { return _Type; }
+            set { if (OnPropertyChanging(__.Type, value)) { _Type = value; OnPropertyChanged(__.Type); } }
         }
 
         private String _Address;
@@ -238,7 +238,7 @@ namespace NewLife.DNS.Entity
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
-                    case __.QueryType : return _QueryType;
+                    case __.Type : return _Type;
                     case __.Address : return _Address;
                     case __.StartDate : return _StartDate;
                     case __.EndDate : return _EndDate;
@@ -262,7 +262,7 @@ namespace NewLife.DNS.Entity
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
-                    case __.QueryType : _QueryType = Convert.ToInt32(value); break;
+                    case __.Type : _Type = Convert.ToInt32(value); break;
                     case __.Address : _Address = Convert.ToString(value); break;
                     case __.StartDate : _StartDate = Convert.ToDateTime(value); break;
                     case __.EndDate : _EndDate = Convert.ToDateTime(value); break;
@@ -293,8 +293,8 @@ namespace NewLife.DNS.Entity
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
-            ///<summary>记录类型</summary>
-            public static readonly Field QueryType = FindByName(__.QueryType);
+            ///<summary>类型</summary>
+            public static readonly Field Type = FindByName(__.Type);
 
             ///<summary>地址</summary>
             public static readonly Field Address = FindByName(__.Address);
@@ -350,8 +350,8 @@ namespace NewLife.DNS.Entity
             ///<summary>名称</summary>
             public const String Name = "Name";
 
-            ///<summary>记录类型</summary>
-            public const String QueryType = "QueryType";
+            ///<summary>类型</summary>
+            public const String Type = "Type";
 
             ///<summary>地址</summary>
             public const String Address = "Address";
@@ -409,8 +409,8 @@ namespace NewLife.DNS.Entity
         /// <summary>名称</summary>
         String Name { get; set; }
 
-        /// <summary>记录类型</summary>
-        Int32 QueryType { get; set; }
+        /// <summary>类型</summary>
+        Int32 Type { get; set; }
 
         /// <summary>地址</summary>
         String Address { get; set; }

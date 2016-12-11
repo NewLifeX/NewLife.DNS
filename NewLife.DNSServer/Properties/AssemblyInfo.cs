@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("XDNS")]
+[assembly: AssemblyTitle("NewLife.DNS")]
 [assembly: AssemblyDescription("某个域名解析到哪个IP上，你说了算，如果你不指定，就由上级DNS服务器说了算")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("新生命开发团队")]
-[assembly: AssemblyProduct("XDNS")]
-[assembly: AssemblyCopyright("\x00a92002-2012 新生命开发团队")]
+[assembly: AssemblyProduct("NewLife.DNS")]
+[assembly: AssemblyCopyright("\x00a92002-2017 新生命开发团队")]
 [assembly: AssemblyTrademark("四叶草")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,11 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyFileVersion("1.0.2012.0619")]
+[assembly: AssemblyVersion("2.0.*")]
+[assembly: AssemblyFileVersion("2.0.2016.1211")]
+
+/*
+ * v2.0.2016.1211   升级最新网络库
+ * 
+ * v1.0.2012.0619   创建
+ */

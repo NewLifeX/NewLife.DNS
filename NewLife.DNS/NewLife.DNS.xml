@@ -22,7 +22,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
-      <Column Name="QueryType" DataType="Int32" Description="记录类型" />
+      <Column Name="Type" DataType="Int32" Description="类型" />
       <Column Name="Address" DataType="String" Length="200" Description="地址" />
       <Column Name="StartDate" DataType="DateTime" Description="开始日期" />
       <Column Name="EndDate" DataType="DateTime" Description="结束日期" />
@@ -45,7 +45,7 @@
   <Table Name="Record" Description="记录" DbType="SqlServer">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="QueryType" DataType="Int32" Description="记录类型" />
+      <Column Name="Type" DataType="Int32" Description="类型" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
       <Column Name="Address" DataType="String" Length="200" Description="地址" />
       <Column Name="TTL" DataType="DateTime" Description="生存时间" />
@@ -67,7 +67,7 @@
   <Table Name="History" Description="历史" ConnName="History" DbType="SqlServer">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="QueryType" DataType="Int32" Description="记录类型" />
+      <Column Name="Type" DataType="Int32" Description="类型" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
       <Column Name="Address" DataType="String" Length="200" Description="地址" />
       <Column Name="UserIP" DataType="String" Length="200" Description="用户地址" />

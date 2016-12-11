@@ -85,8 +85,9 @@ namespace NewLife.DNS.Entity
         #endregion
 
         #region 扩展属性﻿
-        /// <summary>属性说明</summary>
-        public QueryType DNSQueryType { get { return (QueryType)QueryType; } set { QueryType = (Int32)value; } }
+        /// <summary>DNS类型</summary>
+        [Map(__.Type)]
+        public QueryType QueryType { get { return (QueryType)Type; } set { Type = (Int32)value; } }
 
         /// <summary>是否过期</summary>
         /// <returns></returns>
@@ -110,15 +111,16 @@ namespace NewLife.DNS.Entity
 
         #region 扩展查询﻿
         /// <summary>根据记录类型、名称查找</summary>
-        /// <param name="querytype">记录类型</param>
+        /// <param name="type">记录类型</param>
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Rule> FindAllByQueryTypeAndName(Int32 querytype, String name)
+        public static EntityList<Rule> FindAllByQueryTypeAndName(Int32 type, String name)
         {
+            var qtype = (QueryType)type;
             if (Meta.Count >= 1000)
             {
-                var list = FindAll(GetWhere(querytype, name), null, null, 0, 0);
+                var list = FindAll(GetWhere(qtype, name), null, null, 0, 0);
                 if (list == null || list.Count < 1) return list;
 
                 var now = DateTime.Now;
@@ -126,9 +128,9 @@ namespace NewLife.DNS.Entity
                 return list;
             }
 
-            if ((QueryType)querytype != NewLife.DNS.QueryType.ANY)
+            if (qtype != QueryType.ANY)
             {
-                return Meta.Cache.Entities.FindAll(e => e.QueryType == querytype && e.Enable && !e.IsExpired && e.IsMatch(name));
+                return Meta.Cache.Entities.FindAll(e => e.QueryType == qtype && e.Enable && !e.IsExpired && e.IsMatch(name));
             }
             else
             {
@@ -136,26 +138,26 @@ namespace NewLife.DNS.Entity
             }
         }
 
-        static String GetWhere(Int32 querytype, String name)
+        static String GetWhere(QueryType type, String name)
         {
             var exp = _.Name == name;
-            if ((QueryType)querytype != NewLife.DNS.QueryType.ANY) exp &= _.QueryType == querytype;
+            if (type != QueryType.ANY) exp &= _.Type == type;
 
             return exp;
         }
 
         /// <summary>根据记录类型、名称、地址查找</summary>
-        /// <param name="querytype">记录类型</param>
+        /// <param name="type">记录类型</param>
         /// <param name="name">名称</param>
         /// <param name="address">地址</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Rule FindByQueryTypeAndNameAndAddress(Int32 querytype, String name, String address)
+        public static Rule FindByQueryTypeAndNameAndAddress(QueryType type, String name, String address)
         {
             if (Meta.Count >= 1000)
-                return Find(new String[] { _.QueryType, _.Name, _.Address }, new Object[] { querytype, name, address });
+                return Find(new String[] { _.Type, _.Name, _.Address }, new Object[] { type, name, address });
             else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.QueryType == querytype && e.Name == name && e.Address == address);
+                return Meta.Cache.Entities.Find(e => e.QueryType == type && e.Name == name && e.Address == address);
         }
 
         /// <summary>根据编号查找</summary>
@@ -242,7 +244,7 @@ namespace NewLife.DNS.Entity
             return false;
         }
 
-        public static Int32 Import(Int32 querytype, String name, String text)
+        public static Int32 Import(QueryType type, String name, String text)
         {
             var ss = text.Split(new Char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             Int32 total = 0;
@@ -268,11 +270,11 @@ namespace NewLife.DNS.Entity
                         }
                     }
 
-                    var entity = FindByQueryTypeAndNameAndAddress(querytype, myname, addr);
+                    var entity = FindByQueryTypeAndNameAndAddress(type, myname, addr);
                     if (entity != null) continue;
 
                     entity = new Rule();
-                    entity.QueryType = querytype;
+                    entity.QueryType = type;
                     entity.Name = myname;
                     entity.Address = addr;
                     entity.Enable = true;

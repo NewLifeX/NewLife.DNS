@@ -11,3 +11,4 @@ namespace XDNS
         [Description("上级DNS服务器")]
         public String DNSServer { get; set; } = "tcp://8.8.8.8,tcp://dns.newlifex.com";
     }
+}
