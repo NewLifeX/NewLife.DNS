@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NewLife.Agent;
 using NewLife.Configuration;
@@ -53,12 +54,14 @@ namespace NewLife.DNS.Server
 
             // 启动服务器
             var svr = new DNSServer();
-            svr.Parent = set.DNSServer + "," + svr.Parent;
+            if (set.Debug) svr.Log = XTrace.Log;
+            //svr.Parent = set.DNSServer + "," + svr.Parent;
+            svr.Parents.AddRange(svr.GetLocalDNS());
+            svr.SetParents(set.DNSServer);
             svr.OnRequest += Server_OnRequest;
             svr.OnResponse += Server_OnResponse;
             svr.OnNew += Server_OnNew;
 
-            if (set.Debug) svr.Log = XTrace.Log;
             svr.Start();
 
             Server = svr;
@@ -208,6 +211,7 @@ namespace NewLife.DNS.Server
                 vt.Hits++;
                 vt.LastVisit = DateTime.Now;
                 // 单对象缓存会自动保存
+                vt.SaveAsync();
             }
         }
 

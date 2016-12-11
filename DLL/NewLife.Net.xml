@@ -480,6 +480,59 @@
         <member name="T:NewLife.Net.DNS.BinaryDNS">
             <summary>DNS的二进制序列化</summary>
         </member>
+        <member name="T:NewLife.Net.DNS.DNSClient">
+            <summary>DNS客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSClient.Server">
+            <summary>DNS服务器</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSClient.Client">
+            <summary>网络客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSClient.Total">
+            <summary>总次数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSClient.Success">
+            <summary>成功数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSClient.Percent">
+            <summary>成功率</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.#ctor">
+            <summary>使用本地DNS配置创建DNS客户端</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.#ctor(NewLife.Net.NetUri)">
+            <summary>使用指定目标服务器创建DNS客户端</summary>
+            <param name="uri"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.OnDispose(System.Boolean)">
+            <summary>销毁</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.Open">
+            <summary>打开客户端</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.Close">
+            <summary>关闭客户端</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.OnReceive(NewLife.Net.DNS.DNSEntity)">
+            <summary>收到响应</summary>
+            <param name="dns"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.QueryAsync(NewLife.Net.DNS.DNSEntity)">
+            <summary>异步查询解析</summary>
+            <param name="dns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.QueryAll(System.Collections.Generic.IEnumerable{NewLife.Net.DNS.DNSClient},NewLife.Net.DNS.DNSEntity,System.Int32)">
+            <summary>使用一批DNS客户端发起请求</summary>
+            <param name="clients"></param>
+            <param name="dns"></param>
+            <param name="msTimeout"></param>
+            <returns></returns>
+        </member>
         <member name="T:NewLife.Net.DNS.DNSEntity">
             <summary>DNS实体类基类</summary>
             <remarks>
@@ -874,19 +927,22 @@
         <member name="P:NewLife.Net.DNS.DNSServer.Parents">
             <summary>上级DNS地址</summary>
         </member>
-        <member name="P:NewLife.Net.DNS.DNSServer.Parent">
-            <summary>上级DNS地址，多个地址以逗号隔开</summary>
-        </member>
         <member name="M:NewLife.Net.DNS.DNSServer.#ctor">
             <summary>实例化一个DNS服务器</summary>
         </member>
-        <member name="M:NewLife.Net.DNS.DNSServer.GetParents">
+        <member name="M:NewLife.Net.DNS.DNSServer.GetLocalDNS">
             <summary>获取本机DNS列表</summary>
             <returns></returns>
         </member>
         <member name="M:NewLife.Net.DNS.DNSServer.SetParents(System.String)">
             <summary>设置父级DNS</summary>
             <param name="parents"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.OnStart">
+            <summary>启动服务</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.OnStop">
+            <summary>停止服务</summary>
         </member>
         <member name="M:NewLife.Net.DNS.DNSServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
             <summary>接收处理</summary>

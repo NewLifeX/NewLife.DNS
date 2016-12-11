@@ -13,6 +13,6 @@ namespace NewLife.DNS.Server
 
         /// <summary>上级DNS服务器</summary>
         [Description("上级DNS服务器")]
-        public String DNSServer { get; set; } = "tcp://8.8.8.8,tcp://dns.newlifex.com";
+        public String DNSServer { get; set; } = "udp://223.5.5.5,tcp://8.8.8.8,udp://223.4.4.4";
     }
 }
