@@ -12,11 +12,8 @@ namespace NewLife.DNS.Entity
     [Serializable]
     [DataObject]
     [Description("历史")]
-    [BindIndex("IU_History_Name", true, "Name")]
-    [BindIndex("IU_History_HardID", true, "HardID")]
+    [BindIndex("IX_History_Name", false, "Name")]
     [BindIndex("IX_History_Type", false, "Type")]
-    [BindIndex("IX_History_Kind", false, "Kind")]
-    [BindIndex("IX_History_ServerID", false, "ServerID")]
     [BindTable("History", Description = "历史", ConnName = "History", DbType = DatabaseType.SqlServer)]
     public partial class History : IHistory
     {

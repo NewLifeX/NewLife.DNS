@@ -77,7 +77,7 @@ namespace NewLife.DNS.Entity
 
         #region 高级查询
         [DataObjectMethod(DataObjectMethodType.Select, true)]
-        public static EntityList<History> Search(String name, String address, DateTime start, DateTime end, String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        public static EntityList<History> Search(Int32 type, String name, String address, DateTime start, DateTime end, String key, Pager p)
         {
             var dt = DateTime.Now;
             if (start > DateTime.MinValue)
@@ -86,26 +86,9 @@ namespace NewLife.DNS.Entity
                 dt = end;
             if (!Helper.CheckHistoryDatabase(Meta.Factory, dt)) return new EntityList<History>();
 
-            return FindAll(SearchWhere(name, address, start, end, key), orderClause, null, startRowIndex, maximumRows);
-        }
-
-        public static Int32 SearchCount(String name, String address, DateTime start, DateTime end, String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        {
-            var dt = DateTime.Now;
-            if (start > DateTime.MinValue)
-                dt = start;
-            else if (end > DateTime.MinValue)
-                dt = end;
-            if (!Helper.CheckHistoryDatabase(Meta.Factory, dt)) return 0;
-
-            return FindCount(SearchWhere(name, address, start, end, key), null, null, 0, 0);
-        }
-
-        private static String SearchWhere(String name, String address, DateTime start, DateTime end, String key)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
             var exp = SearchWhereByKeys(key);
 
+            if (type > 0) exp &= _.Type == type;
             if (!name.IsNullOrWhiteSpace()) exp &= _.Name == name;
             if (!address.IsNullOrWhiteSpace()) exp &= _.Address == address;
 
@@ -113,7 +96,7 @@ namespace NewLife.DNS.Entity
             if (start > DateTime.MinValue && start.Day > 1) exp &= _.CreateTime >= start;
             if (end > DateTime.MinValue) exp &= _.CreateTime < end.Date.AddDays(1);
 
-            return exp;
+            return FindAll(exp, p);
         }
         #endregion
 

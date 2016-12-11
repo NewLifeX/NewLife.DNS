@@ -13,6 +13,7 @@ namespace NewLife.DNS.Entity
     [DataObject]
     [Description("规则")]
     [BindIndex("IX_Rule_Name", false, "Name")]
+    [BindIndex("IX_Rule_Type", false, "Type")]
     [BindTable("Rule", Description = "规则", ConnName = "DNS", DbType = DatabaseType.SqlServer)]
     public partial class Rule : IRule
     {

@@ -12,7 +12,7 @@ namespace NewLife.DNS.Entity
     [Serializable]
     [DataObject]
     [Description("记录")]
-    [BindIndex("IX_Record_QueryType", false, "QueryType")]
+    [BindIndex("IX_Record_Type", false, "Type")]
     [BindTable("Record", Description = "记录", ConnName = "DNS", DbType = DatabaseType.SqlServer)]
     public partial class Record : IRecord
     {

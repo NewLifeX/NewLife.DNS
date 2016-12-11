@@ -40,6 +40,7 @@
     </Columns>
     <Indexes>
       <Index Columns="Name" />
+      <Index Columns="Type" />
     </Indexes>
   </Table>
   <Table Name="Record" Description="记录" DbType="SqlServer">
@@ -61,7 +62,7 @@
       <Column Name="UpdateIP" DataType="String" Description="更新地址" />
     </Columns>
     <Indexes>
-      <Index Columns="QueryType" />
+      <Index Columns="Type" />
     </Indexes>
   </Table>
   <Table Name="History" Description="历史" ConnName="History" DbType="SqlServer">
@@ -77,11 +78,8 @@
       <Column Name="CreateIP" DataType="String" Description="创建地址" />
     </Columns>
     <Indexes>
-      <Index Columns="Name" Unique="True" />
-      <Index Columns="HardID" Unique="True" />
+      <Index Columns="Name" />
       <Index Columns="Type" />
-      <Index Columns="Kind" />
-      <Index Columns="ServerID" />
     </Indexes>
   </Table>
 </Tables>
