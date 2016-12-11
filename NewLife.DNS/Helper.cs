@@ -18,7 +18,8 @@ namespace NewLife.DNS
         public static Boolean CheckHistoryDatabase(IEntityOperate eop, DateTime dt, Boolean createDb = false)
         {
             // 根据时间计算数据库名
-            var name = String.Format("DNS_History_{0:yyMM}", dt);
+            //var name = String.Format("DNS_History_{0:yyMM}", dt);
+            var name = String.Format("DNS_History_{0:yyyy}", dt);
             if (!DAL.ConnStrs.ContainsKey(name))
             {
                 // 计算DNS数据库所在目录

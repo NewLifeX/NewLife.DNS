@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NewLife.Agent;
 using NewLife.Configuration;
 using NewLife.DNS.Entity;
+using NewLife.Log;
 using NewLife.Net.DNS;
 
-namespace XDNS
+namespace NewLife.DNS.Server
 {
     public class AgentService : AgentServiceBase<AgentService>
     {
@@ -29,12 +31,37 @@ namespace XDNS
 
         public override void StartWork()
         {
-            Server = new DNSServer();
-            Server.Parent = Setting.Current.DNSServer + "," + Server.Parent;
-            Server.OnRequest += Server_OnRequest;
-            Server.OnResponse += Server_OnResponse;
-            Server.OnNew += Server_OnNew;
-            Server.Start();
+            // 修改数据库默认目录
+            var xcode = XCode.Setting.Current;
+            if (xcode.IsNew)
+            {
+                xcode.ShowSQL = false;
+                xcode.SQLiteDbPath = "..\\Data";
+                xcode.Save();
+            }
+
+            // 初始化数据库
+            Task.Run(() =>
+            {
+                var n = 0;
+                n = Rule.Meta.Count;
+                n = Record.Meta.Count;
+                n = Visitor.Meta.Count;
+            });
+
+            var set = Setting.Current;
+
+            // 启动服务器
+            var svr = new DNSServer();
+            svr.Parent = set.DNSServer + "," + svr.Parent;
+            svr.OnRequest += Server_OnRequest;
+            svr.OnResponse += Server_OnResponse;
+            svr.OnNew += Server_OnNew;
+
+            if (set.Debug) svr.Log = XTrace.Log;
+            svr.Start();
+
+            Server = svr;
 
             base.StartWork();
         }
@@ -43,10 +70,11 @@ namespace XDNS
         {
             base.StopWork();
 
-            Server.Stop();
-            Server.OnRequest -= Server_OnRequest;
-            Server.OnResponse -= Server_OnResponse;
-            Server.OnNew -= Server_OnNew;
+            var svr = Server;
+            svr.Stop();
+            svr.OnRequest -= Server_OnRequest;
+            svr.OnResponse -= Server_OnResponse;
+            svr.OnNew -= Server_OnNew;
         }
         #endregion
 

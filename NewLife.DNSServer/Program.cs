@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XDNS
+namespace NewLife.DNS.Server
 {
     class Program
     {

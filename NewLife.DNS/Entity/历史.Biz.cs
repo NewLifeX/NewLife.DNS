@@ -21,6 +21,11 @@ namespace NewLife.DNS.Entity
     public partial class History : Entity<History>
     {
         #region 对象操作﻿
+        static History()
+        {
+            Meta.Table.DataTable.InsertOnly = true;
+        }
+
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
@@ -33,48 +38,15 @@ namespace NewLife.DNS.Entity
 
             // 把\0干掉
             if (Dirtys[_.Name]) Name = (Name + "").Replace("\0", "");
-
-            Helper.CheckHistoryDatabase(Meta.Factory, DateTime.Now, true);
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        public override Int32 Insert()
+        {
+            // 必须在Insert里面检查链接，因为OnInsert/Valid之前就会打开事务
+            Helper.CheckHistoryDatabase(Meta.Factory, DateTime.Now, true);
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
-
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}历史数据……", typeof(History).Name);
-
-        //    var entity = new History();
-        //    entity.QueryType = 0;
-        //    entity.Name = "abc";
-        //    entity.Address = "abc";
-        //    entity.UserIP = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.Insert();
-
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}历史数据！", typeof(History).Name);
-        //}
-
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
+            return base.Insert();
+        }
         #endregion
 
         #region 扩展属性﻿
