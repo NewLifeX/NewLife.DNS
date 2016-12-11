@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.DNS", "NewLife.DNS\NewLife.DNS.csproj", "{D2587497-B717-4667-8523-EE0DB302BF4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.DNS.Web", "NewLife.DNS.Web\NewLife.DNS.Web.csproj", "{919AA68E-39AB-4B42-BF29-8F2E4862BE33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.DNSServer", "NewLife.DNSServer\NewLife.DNSServer.csproj", "{CBC9A7E8-9CA1-48AB-9F92-B94B23682FF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2587497-B717-4667-8523-EE0DB302BF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2587497-B717-4667-8523-EE0DB302BF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2587497-B717-4667-8523-EE0DB302BF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2587497-B717-4667-8523-EE0DB302BF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{919AA68E-39AB-4B42-BF29-8F2E4862BE33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{919AA68E-39AB-4B42-BF29-8F2E4862BE33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{919AA68E-39AB-4B42-BF29-8F2E4862BE33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{919AA68E-39AB-4B42-BF29-8F2E4862BE33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC9A7E8-9CA1-48AB-9F92-B94B23682FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC9A7E8-9CA1-48AB-9F92-B94B23682FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC9A7E8-9CA1-48AB-9F92-B94B23682FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC9A7E8-9CA1-48AB-9F92-B94B23682FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

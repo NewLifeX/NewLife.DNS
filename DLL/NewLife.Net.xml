@@ -1,0 +1,4510 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewLife.Net</name>
+    </assembly>
+    <members>
+        <member name="T:NewLife.Net.Application.AppTest">
+            <summary>网络应用程序测试</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.AppTest.Start">
+            <summary>开始测试</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.AppTest.StartServer">
+            <summary>开始测试</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.AppTest.StartClient">
+            <summary>开始测试</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.AppTest.TcpConnectionTest">
+            <summary>TCP大量连接测试</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.AppTest.OnReceive(NewLife.Net.ISocketSession,System.IO.Stream)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.ChargenServer">
+            <summary>Chargen服务器。不停的向连接者发送数据</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.ChargenServer.#ctor">
+            <summary>实例化一个Chargen服务</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.ChargenServer.OnNewSession(NewLife.Net.ISocketSession)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+        </member>
+        <member name="M:NewLife.Net.Application.ChargenServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Application.ChargenServer.OnError(System.Object,NewLife.ExceptionEventArgs)">
+            <summary>触发异常</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.DaytimeServer">
+            <summary>Daytime服务器。返回服务端的时间日期</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.DaytimeServer.#ctor">
+            <summary>实例化一个Daytime服务</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.DaytimeServer.OnNewSession(NewLife.Net.ISocketSession)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.DiscardServer">
+            <summary>Discard服务器。抛弃所有收到的数据包，不做任何响应</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.DiscardServer.#ctor">
+            <summary>实例化一个Discard服务</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.DiscardServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.LogServer">
+            <summary>日志服务</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.LogServer.#ctor">
+            <summary>实例化一个日志服务</summary>
+        </member>
+        <member name="T:NewLife.Net.Application.LogServer.LogSession">
+            <summary>日志会话</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.LogServer.LogSession.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.LogServer.LogSession.Start">
+            <summary>开始会话</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.LogServer.LogSession.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>已重载。</summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.EchoServer">
+            <summary>Echo服务。把客户端发来的数据原样返回。</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.EchoServer.#ctor">
+            <summary>实例化一个Echo服务</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.EchoServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.Application.SerialServer">
+            <summary>串口服务器。把收发数据映射到本地的指定串口</summary>
+            <remarks>
+            一定要注意：串口编程最大的问题在于硬件设备可能极为不稳定，响应速度不可估计，所以需要尽可能的等待。
+            
+            串口读取的学问非常的大，影响响应比较慢，要等一会才能得到数据，并且可能只是得到一部分，而无限制的等待，又会让整个读取变得相当漫长。
+            一般来说，串口传输的数据，是指定长度有头有尾的帧数据。因此，只需要设定好等待时间和帧大小，就能很好的读取数据。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Application.SerialServer.PortName">
+            <summary>串口名。默认COM1</summary>
+        </member>
+        <member name="P:NewLife.Net.Application.SerialServer.AutoClose">
+            <summary>每次收发完数据之后自动关闭</summary>
+        </member>
+        <member name="P:NewLife.Net.Application.SerialServer.Serial">
+            <summary>串口对象</summary>
+        </member>
+        <member name="P:NewLife.Net.Application.SerialServer.Timeout">
+            <summary>超时时间</summary>
+        </member>
+        <member name="P:NewLife.Net.Application.SerialServer.ReceivedBytesThreshold">
+            <summary>每一帧长度</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.SerialServer.#ctor">
+            <summary>实例化一个串口服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.SerialServer.OnDispose(System.Boolean)">
+            <summary>子类重载实现资源释放逻辑时必须首先调用基类方法</summary>
+            <param name="disposing">从Dispose调用（释放所有资源）还是析构函数调用（释放非托管资源）</param>
+        </member>
+        <member name="E:NewLife.Net.Application.SerialServer.OnCreate">
+            <summary>创建窗口对象时触发</summary>
+        </member>
+        <member name="T:NewLife.Net.Application.SerialServer.Session">
+            <summary>串口服务会话</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.SerialServer.Session.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到客户端发来的数据</summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NewLife.Net.Application.SerialServer.Read(System.IO.Ports.SerialPort,System.Int32)">
+            <summary>从串口中读取指定长度的数据，一般是一帧</summary>
+            <param name="sp"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Application.TimeServer">
+            <summary>Time服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.TimeServer.#ctor">
+            <summary>实例化一个Time服务。向请求者返回1970年1月1日以来的所有秒数</summary>
+        </member>
+        <member name="M:NewLife.Net.Application.TimeServer.OnNewSession(NewLife.Net.ISocketSession)">
+            <summary>已重载。</summary>
+            <param name="session"></param>
+        </member>
+        <member name="T:NewLife.Net.CoAP.CoAPMessage">
+            <summary>受限制的应用协议(Constrained Application Protocol)</summary>
+            <remarks>用于物联网M2M</remarks>
+        </member>
+        <member name="P:NewLife.Net.CoAP.CoAPMessage.Ver">
+            <summary>版本</summary>
+        </member>
+        <member name="P:NewLife.Net.CoAP.CoAPMessage.Type">
+            <summary>类型</summary>
+        </member>
+        <member name="P:NewLife.Net.CoAP.CoAPMessage.OptionCount">
+            <summary>可选选项数量</summary>
+        </member>
+        <member name="P:NewLife.Net.CoAP.CoAPMessage.Code">
+            <summary>指令码</summary>
+        </member>
+        <member name="P:NewLife.Net.CoAP.CoAPMessage.MessageID">
+            <summary>消息编号</summary>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpClient">
+            <summary>DHCP客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpClient.Client">
+            <summary>网络客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpClient.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpClient.Mac">
+            <summary>物理地址</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpClient.TransID">
+            <summary>事务ID</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.OnDispose(System.Boolean)">
+            <summary>销毁</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.Start">
+            <summary>开始</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.Stop">
+            <summary>停止</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.Send(NewLife.Net.Dhcp.DhcpEntity)">
+            <summary>发送DHCP消息</summary>
+            <param name="dhcp"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.SendDiscover">
+            <summary>广播发现</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.OnOffer(NewLife.Net.Dhcp.DhcpEntity,System.Object)">
+            <summary>提供IP</summary>
+            <param name="dhcp"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.SendRequest">
+            <summary>发送请求</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.OnAck(NewLife.Net.Dhcp.DhcpEntity,System.Object)">
+            <summary>确认</summary>
+            <param name="dhcp"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.OnNak(NewLife.Net.Dhcp.DhcpEntity,System.Object)">
+            <summary>拒绝</summary>
+            <param name="dhcp"></param>
+            <param name="state"></param>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpClient.Log">
+            <summary>日志</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpClient.WriteLog(System.String,System.Object[])">
+            <summary>写日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpMessageType">
+            <summary>DHCP消息类型</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Discover">
+            <summary>发现</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Offer">
+            <summary>提供</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Request">
+            <summary>请求</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Decline">
+            <summary>谢绝</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Ack">
+            <summary>应答</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Nak">
+            <summary>拒绝</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Release">
+            <summary>释放</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpMessageType.Inform">
+            <summary>通知</summary>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpEntity">
+            <summary>DHCP实体</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.MessageType">
+            <summary>消息类型。若是client送给server的封包，设为1，反向为2</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.HardwareType">
+            <summary>硬件类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.HardAddrLength">
+            <summary>硬件地址长度</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.Hops">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.TransactionID">
+            <summary>会话编号</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.Seconds">
+            <summary>秒数</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.BootpFlags">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.ClientIP">
+            <summary>客户端IP地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.YourIP">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.NextServerIP">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.RelayAgentIP">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.ClientMac">
+            <summary>客户端MAC地址。占用16字节，实际内存长度由_HardwareAddressLength决定</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.ServerName">
+            <summary>服务器名</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.BootFileName">
+            <summary>启动文件名</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.Magic">
+            <summary>幻数</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.Options">
+            <summary>可选项</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.Get(NewLife.Net.Dhcp.DhcpOptions,System.Boolean)">
+            <summary>获取可选项</summary>
+            <param name="type"></param>
+            <param name="add"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpEntity.Kind">
+            <summary>消息种类</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.Read(System.IO.Stream,System.Object)">
+            <summary>读取扩展属性</summary>
+            <param name="stream"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.Write(System.IO.Stream,System.Object)">
+            <summary>写入可选项</summary>
+            <param name="stream"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.CreateFormatter(System.Boolean)">
+            <summary>使用字段大小</summary>
+            <param name="isRead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.GetMember(System.Reflection.PropertyInfo,System.Int32,System.Text.StringBuilder)">
+            <summary>显示扩展属性</summary>
+            <param name="pi"></param>
+            <param name="len"></param>
+            <param name="sb"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpEntity.GetMemberValue(System.Reflection.PropertyInfo)">
+            <summary>获取用于输出的成员值</summary>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpOptions">
+            <summary>DHCP选项类型</summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.Mask">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.Router">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.TimeServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.NameServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.DNSServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.LOGServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.HostName">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.MTU">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.StaticRout">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.ARPCacheTimeout">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.NTPServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.RequestedIP">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.IPLeaseTime">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.MessageType">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.DHCPServer">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.ParameterList">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.Message">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.MaxMessageSize">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.Vendor">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.ClientIdentifier">
+            <summary></summary>
+        </member>
+        <member name="F:NewLife.Net.Dhcp.DhcpOptions.End">
+            <summary></summary>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpOption">
+            <summary>DHCP可选项</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpOption.Option">
+            <summary>选项类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpOption.Length">
+            <summary>长度</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpOption.Data">
+            <summary>数据部分</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpOption.SetType(NewLife.Net.Dhcp.DhcpMessageType)">
+            <summary>设置类型</summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpOption.SetClientId(System.Byte[])">
+            <summary>设置客户端标识</summary>
+            <param name="clientid"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpOption.SetData(NewLife.Net.Dhcp.DhcpOptions,System.Byte[])">
+            <summary>设置参数</summary>
+            <param name="kind"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpOption.ToStr">
+            <summary>转为字符串标识</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpOption.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpServer">
+            <summary>DHCP服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpServer.#ctor">
+            <summary>实例化DHCP服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpServer.EnsureCreateServer">
+            <summary>确保创建服务器</summary>
+        </member>
+        <member name="E:NewLife.Net.Dhcp.DhcpServer.OnMessage">
+            <summary>收到消息时触发</summary>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpSession">
+            <summary>DHCP会话</summary>
+        </member>
+        <member name="M:NewLife.Net.Dhcp.DhcpSession.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到数据时触发</summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:NewLife.Net.Dhcp.DhcpSession.OnMessage">
+            <summary>收到消息时触发</summary>
+        </member>
+        <member name="T:NewLife.Net.Dhcp.DhcpMessageEventArgs">
+            <summary>消息事件参数</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpMessageEventArgs.Request">
+            <summary>收到的消息</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpMessageEventArgs.Response">
+            <summary>响应消息</summary>
+        </member>
+        <member name="P:NewLife.Net.Dhcp.DhcpMessageEventArgs.UserState">
+            <summary>用户对象</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.BinaryDNS">
+            <summary>DNS的二进制序列化</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSEntity">
+            <summary>DNS实体类基类</summary>
+            <remarks>
+            参考博客园 @看那边的人 <a target="_blank" href="http://www.cnblogs.com/topdog/archive/2011/11/15/2250185.html">DIY一个DNS查询器：了解DNS协议</a> 
+            <a target="_blank" href="http://www.cnblogs.com/topdog/archive/2011/11/21/2257597.html">DIY一个DNS查询器：程序实现</a>
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEntity.Header">
+            <summary>头部</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEntity.Questions">
+            <summary>请求段</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEntity.Answers">
+            <summary>回答段</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEntity.Authoritis">
+            <summary>授权段</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEntity.Additionals">
+            <summary>附加段</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.GetAnswer(System.Boolean)">
+            <summary>获取响应</summary>
+            <param name="create"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.Write(System.IO.Stream,System.Boolean)">
+            <summary>把当前对象写入到数据流中去</summary>
+            <param name="stream"></param>
+            <param name="forTcp">是否是Tcp，Tcp需要增加整个流长度</param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.GetStream(System.Boolean)">
+            <summary>获取当前对象的数据流</summary>
+            <param name="forTcp">是否是Tcp，Tcp需要增加整个流长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.Read(System.Byte[],System.Boolean)">
+            <summary>从数据中读取对象</summary>
+            <param name="data"></param>
+            <param name="forTcp">是否是Tcp，Tcp需要增加整个流长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.Read(System.IO.Stream,System.Boolean)">
+            <summary>从数据流中读取对象，返回<see cref="T:NewLife.Net.DNS.DNS_A"/>、<see cref="T:NewLife.Net.DNS.DNS_PTR"/>等真实对象</summary>
+            <param name="stream"></param>
+            <param name="forTcp">是否是Tcp，Tcp需要增加整个流长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.CreateFormatter(System.Boolean)">
+            <summary>创建序列化器</summary>
+            <param name="isRead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.CreateRecord(NewLife.Net.DNS.DNSQueryType)">
+            <summary>创建指定类型的记录</summary>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.CloneFrom(NewLife.Net.DNS.DNSEntity)">
+            <summary>复制</summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSEntity.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSHeader">
+            <summary>DNS头部</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSHeader.gid">
+            <summary>全局编号，不断累加</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.ID">
+            <summary>长度为16位，是一个用户发送查询的时候定义的随机数，当服务器返回结果的时候，返回包的ID与用户发送的一致。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSHeader._D1">
+            <summary>默认RecursionDesired</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Response">
+            <summary>是否响应</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Opcode">
+            <summary>长度4位，值0是标准查询，1是反向查询，2是服务器状态查询。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.AuthoritativeAnswer">
+            <summary>长度1位，授权应答(Authoritative Answer) - 这个比特位在应答的时候才有意义，指出给出应答的服务器是查询域名的授权解析服务器。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.TrunCation">
+            <summary>长度1位，截断(TrunCation) - 用来指出报文比允许的长度还要长，导致被截断。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.RecursionDesired">
+            <summary>长度1位，期望递归(Recursion Desired) - 这个比特位被请求设置，应答的时候使用的相同的值返回。如果设置了RD，就建议域名服务器进行递归解析，递归查询的支持是可选的。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.RecursionAvailable">
+            <summary>长度1位，支持递归(Recursion Available) - 这个比特位在应答中设置或取消，用来代表服务器是否支持递归查询。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Broadcast">
+            <summary>Broadcast Flag</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.ResponseCode">
+            <summary>长度4位，应答码，类似http的stateCode一样，值0没有错误、1格式错误、2服务器错误、3名字错误、4服务器不支持、5拒绝。</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Questions">
+            <summary>报文请求段中的问题记录数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Answers">
+            <summary>报文回答段中的回答记录数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Authoritis">
+            <summary>报文授权段中的授权记录数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSHeader.Additionals">
+            <summary>报文附加段中的附加记录数</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSHeader.#ctor">
+            <summary>实例化一个DNS头部</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSNameAccessor">
+            <summary>DNS名称访问器</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSNameAccessor.Keys">
+            <summary>键</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSNameAccessor.Values">
+            <summary>值</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSNameAccessor.#ctor">
+            <summary>实例化DNS名称访问器</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSNameAccessor.Read(System.IO.Stream,System.Int64)">
+            <summary>从流中读取字符串</summary>
+            <param name="stream">数据流</param>
+            <param name="offset">数据流相对于真正数据的位移</param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSOpcodeType">
+            <summary>
+            The Query Types (OPCODE) that specifies kind of query in a message.
+            (RFC 1035 4.1.1 and 1002 4.2.1.1)
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Query">
+            <summary>A standard query (QUERY); used for NetBIOS, too</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.InverseQuery">
+            <summary>An inverse query (IQUERY)</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Status">
+            <summary>A server status request (STATUS)</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd3">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd4">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Registration">
+            <summary>NetBIOS registration</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Release">
+            <summary>NetBIOS release</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.WACK">
+            <summary>NetBIOS WACK</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Refresh">
+            <summary>NetBIOS refresh</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd9">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd10">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd11">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd12">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd13">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd14">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSOpcodeType.Reserverd15">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSQueryType">
+            <summary>查询的资源记录类型</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.A">
+            <summary>指定计算机 IP 地址。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.NS">
+            <summary>指定用于命名区域的 DNS 名称服务器。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MD">
+            <summary>指定邮件接收站（此类型已经过时了，使用MX代替）</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MF">
+            <summary>指定邮件中转站（此类型已经过时了，使用MX代替）</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.CNAME">
+            <summary>指定用于别名的规范名称。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.SOA">
+            <summary>指定用于 DNS 区域的“起始授权机构”。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MB">
+            <summary>指定邮箱域名。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MG">
+            <summary>指定邮件组成员。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MR">
+            <summary>指定邮件重命名域名。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.NULL">
+            <summary>指定空的资源记录</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.WKS">
+            <summary>描述已知服务。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.PTR">
+            <summary>如果查询是 IP 地址，则指定计算机名；否则指定指向其它信息的指针。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.HINFO">
+            <summary>指定计算机 CPU 以及操作系统类型。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MINFO">
+            <summary>指定邮箱或邮件列表信息。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.MX">
+            <summary>指定邮件交换器。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.TXT">
+            <summary>指定文本信息。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.NB">
+            <summary>NetBIOS general Name Service Resource Record</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.NBSTAT">
+            <summary>NetBIOS NODE STATUS Resource Record</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.AAAA">
+            <summary>IPv6地址</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.Root">
+            <summary>根</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.UINFO">
+            <summary>指定用户信息。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.UID">
+            <summary>指定用户标识符。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.GID">
+            <summary>指定组名的组标识符。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryType.ANY">
+            <summary>指定所有数据类型。</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSQueryClass">
+            <summary>指定信息的协议组</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryClass.IN">
+            <summary>指定 Internet 类别。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryClass.CSNET">
+            <summary>指定 CSNET 类别。（已过时）</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryClass.CHAOS">
+            <summary>指定 Chaos 类别。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryClass.HESIOD">
+            <summary>指定 MIT Athena Hesiod 类别。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSQueryClass.ANY">
+            <summary>指定任何以前列出的通配符。</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSRcodeType">
+            <summary>These are the return codes (RCODE) the server can send back. (RFC 1035 4.1.1)</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Success">
+            <summary>No error condition</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.FormatError">
+            <summary>The name server was unable to interpret the query.</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.ServerFailure">
+            <summary>
+            The name server was unable to process this query due to a problem 
+            with the name server.
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.NameError">
+            <summary>
+            Meaningful only for responses from an authoritative name server, 
+            this code signifies that the domain name referenced in the query 
+            does not exist.
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.NotImplemented">
+            <summary>The name server does not support the requested kind of query.</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Refused">
+            <summary>
+            The name server refuses to perform the specified operation for 
+            policy reasons.  For example, a name server may not wish to provide 
+            the information to the particular requester, or a name server may 
+            not wish to perform a particular operation (e.g., zone transfer) 
+            for particular data.
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd6">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd7">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd8">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd9">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd10">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd11">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd12">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd13">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd14">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRcodeType.Reserverd15">
+            <summary>Reserved for future use</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSQuery">
+            <summary>DNS查询记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSQuery.Name">
+            <summary>名称</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSQuery.Type">
+            <summary>查询类型</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSQuery.Class">
+            <summary>协议组</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSQuery.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSRecord">
+            <summary>DNS记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSRecord.TTL">
+            <summary>生存时间。4字节，指示RDATA中的资源记录在缓存的生存时间。</summary>
+        </member>
+        <member name="F:NewLife.Net.DNS.DNSRecord._Length">
+            <summary>长度</summary>
+            <remarks>后面应该是一个数据区域，留给派生类</remarks>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSRecord.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSRecord.CloneFrom(NewLife.Net.DNS.DNSRecord)">
+            <summary>克隆</summary>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSRecord.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSServer">
+            <summary>DNS服务器</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSServer.DomainName">
+            <summary>域名</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSServer.Parents">
+            <summary>上级DNS地址</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSServer.Parent">
+            <summary>上级DNS地址，多个地址以逗号隔开</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.#ctor">
+            <summary>实例化一个DNS服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.GetParents">
+            <summary>获取本机DNS列表</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.SetParents(System.String)">
+            <summary>设置父级DNS</summary>
+            <param name="parents"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>接收处理</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.Request(NewLife.Net.INetSession,NewLife.Net.DNS.DNSEntity)">
+            <summary>处理请求</summary>
+            <param name="session"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.RequestPTR(NewLife.Net.DNS.DNSEntity)">
+            <summary>处理PTR请求</summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNSServer.Response(NewLife.Net.INetSession,NewLife.Net.DNS.DNSEntity,NewLife.Net.DNS.DNSEntity)">
+            <summary>处理响应</summary>
+            <param name="session"></param>
+            <param name="request"></param>
+            <param name="response"></param>
+        </member>
+        <member name="E:NewLife.Net.DNS.DNSServer.OnRequest">
+            <summary>请求时触发。</summary>
+        </member>
+        <member name="E:NewLife.Net.DNS.DNSServer.OnResponse">
+            <summary>响应时触发。</summary>
+        </member>
+        <member name="E:NewLife.Net.DNS.DNSServer.OnNew">
+            <summary>取得新DNS时触发。</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNSEventArgs">
+            <summary>DNS事件参数</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEventArgs.Request">
+            <summary>请求</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEventArgs.Response">
+            <summary>响应</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNSEventArgs.Session">
+            <summary>网络会话</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_A">
+            <summary>A记录</summary>
+            <remarks>
+            查询的时候只需要设置Question.Name，返回的数据里面，Address和DNSRecord.TTL最有价值。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_A.Address">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_A.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_A.#ctor">
+            <summary>构造一个A记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_AAAA">
+            <summary>A记录</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_AAAA.#ctor">
+            <summary>构造一个AAAA记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_CNAME">
+            <summary>CNAME记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_CNAME.PrimaryName">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_CNAME.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_CNAME.#ctor">
+            <summary>构造一个CNAME记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_MX">
+            <summary>MX记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_MX.Preference">
+            <summary>引用</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_MX.Host">
+            <summary>主机</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_MX.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_MX.#ctor">
+            <summary>构造一个MX记录实例</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_MX.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_NB">
+            <summary>NetBIOS记录</summary>
+            <remarks>
+            查询的时候只需要设置Question.Name。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NB.G">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NB.ONT">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NB.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NB.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_NB.#ctor">
+            <summary>构造一个NetBIOS记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_NS">
+            <summary>NS记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NS.NameServer">
+            <summary>命名服务器</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_NS.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_NS.#ctor">
+            <summary>构造一个NS记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_PTR">
+            <summary>PTR记录</summary>
+            <remarks>
+            查询的时候只需要设置<see cref="P:NewLife.Net.DNS.DNS_PTR.Address"/>，返回的数据里面，<see cref="P:NewLife.Net.DNS.DNS_PTR.DomainName"/>最有价值。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_PTR.Address">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_PTR.DomainName">
+            <summary>域名</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_PTR.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_PTR.#ctor">
+            <summary>构造一个A记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_SOA">
+            <summary>SOA记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.PrimaryNameServer">
+            <summary>主要名称服务器</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.ResponsibleAuthorityMail">
+            <summary>认证邮箱</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.SerialNumber">
+            <summary>序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.RefreshInterval">
+            <summary>刷新间隔</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.RetryInterval">
+            <summary>重试间隔</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.ExpirationLimit">
+            <summary>过期限制</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.MinimumTTL">
+            <summary>最小TTL</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_SOA.Text">
+            <summary>文本信息</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_SOA.#ctor">
+            <summary>构造一个SOA记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.DNS_TXT">
+            <summary>TXT记录</summary>
+        </member>
+        <member name="P:NewLife.Net.DNS.DNS_TXT.Text">
+            <summary>文本</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.DNS_TXT.#ctor">
+            <summary>构造一个TXT记录实例</summary>
+        </member>
+        <member name="T:NewLife.Net.DNS.NetBIOS">
+            <summary>NetBIOS名称</summary>
+        </member>
+        <member name="M:NewLife.Net.DNS.NetBIOS.QueryName(System.String)">
+            <summary>查询名称</summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.DNS.NetBIOS.Register(System.String,System.Net.IPAddress)">
+            <summary>注册</summary>
+            <param name="name">名称</param>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Fetion.WapFetion">
+            <summary>Wap飞信</summary>
+            <remarks>
+            参考博客园 <a target="_blank" href="http://www.cnblogs.com/youwang/archive/2012/01/07/2315933.html">小桥流水</a>
+            
+            1，登录退出
+            2，根据手机号码或者飞信号发送信息
+            3，根据手机号码查找飞信号
+            4，根据飞信号查找手机号码
+            5，根据手机号码或者飞信号添加好友
+            6，好友列表，支持设置备注和请求所只用的昵称
+            7，支持设置任意好友的备注
+            8，支持获取任意好友的手机号码
+            9，支持向陌生人发送强制信息（看人品）
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Mobile">
+            <summary>手机号码</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Client">
+            <summary>客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.ShowResponse">
+            <summary>是否显示响应。一般只用于调试</summary>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.#ctor(System.String,System.String)">
+            <summary>构造函数</summary>
+            <param name="mobile">手机号码</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.OnDispose(System.Boolean)">
+            <summary>子类重载实现资源释放逻辑时必须首先调用基类方法</summary>
+            <param name="disposing">从Dispose调用（释放所有资源）还是析构函数调用（释放非托管资源）</param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Login">
+            <summary>登陆</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Logout">
+            <summary>注销</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Send(System.String,System.String)">
+            <summary>通过手机号，给自己会好友发送消息</summary>
+            <param name="mobile">手机号</param>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.GetUid(System.String)">
+            <summary>获取用户UID</summary>
+            <param name="mobile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Send(System.Int32,System.String)">
+            <summary>发往目标UID</summary>
+            <param name="uid"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.SendToMyself(System.String)">
+            <summary>发送给自己</summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.SendStranger(System.Int32,System.String)">
+            <summary>向非好友发送强制信息。经测试，很难成功，貌似必须同城用户才行</summary>
+            <param name="uid"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.AddFriend(System.String,System.String,System.String)">
+            <summary>添加好友</summary>
+            <param name="mobile">对方手机号码</param>
+            <param name="localName">本地名</param>
+            <param name="nickName">我的昵称，让对方知道我是谁</param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.AddFriend(System.Int32,System.Int32,System.String,System.String)">
+            <summary>添加好友</summary>
+            <param name="number">手机号码或者飞信号码，由第二个参数决定</param>
+            <param name="type">0：手机号；1：飞信号</param>
+            <param name="localName">本地名</param>
+            <param name="nickName">我的昵称，让对方知道我是谁</param>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friends">
+            <summary>好友列表</summary>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.UpdateLocalName(System.Int32,System.String)">
+            <summary>更新本地名</summary>
+            <param name="uid"></param>
+            <param name="localName"></param>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.GetMobile(System.Int32)">
+            <summary>获取指定用户的手机号</summary>
+            <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Fetion.WapFetion.Friend">
+            <summary>好友</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.Client">
+            <summary>客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.Name">
+            <summary>名称</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.Mobile">
+            <summary>号码</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.Status">
+            <summary>状态</summary>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Friend.Description">
+            <summary>描述</summary>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Friend.Refresh">
+            <summary>刷新信息，目前主要获取手机号</summary>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.Friend.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Fetion.WapFetion.Log">
+            <summary>日志</summary>
+        </member>
+        <member name="M:NewLife.Net.Fetion.WapFetion.WriteLog(System.String,System.Object[])">
+            <summary>写日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NewLife.Net.SandBoxServer">
+            <summary>安全沙箱</summary>
+        </member>
+        <member name="P:NewLife.Net.SandBoxServer.Policy">
+            <summary>安全策略文件内容</summary>
+        </member>
+        <member name="M:NewLife.Net.SandBoxServer.#ctor">
+            <summary>实例化一个安全沙箱服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.SandBoxServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>数据返回</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.FTP.FTPClient">
+            <summary>FTP客户端</summary>
+        </member>
+        <member name="T:NewLife.Net.FTP.FTPItem">
+            <summary>FTP项</summary>
+        </member>
+        <member name="P:NewLife.Net.FTP.FTPItem.Name">
+            <summary>名称</summary>
+        </member>
+        <member name="P:NewLife.Net.FTP.FTPItem.Size">
+            <summary>大小</summary>
+        </member>
+        <member name="P:NewLife.Net.FTP.FTPItem.Modified">
+            <summary>修改时间</summary>
+        </member>
+        <member name="P:NewLife.Net.FTP.FTPItem.IsDirectory">
+            <summary>是否目录</summary>
+        </member>
+        <member name="T:NewLife.Net.FTP.FTPServer">
+            <summary>FTP服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.FTP.FTPServer.#ctor">
+            <summary>实例化一个FTP服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.FTP.FTPSession">
+            <summary>FTP会话</summary>
+        </member>
+        <member name="T:NewLife.Net.FTP.FTPTransferMode">
+            <summary>传输模式</summary>
+        </member>
+        <member name="F:NewLife.Net.FTP.FTPTransferMode.Active">
+            <summary>主动。服务器主动连接客户端</summary>
+        </member>
+        <member name="F:NewLife.Net.FTP.FTPTransferMode.Passive">
+            <summary>被动。客户端连接服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpCache">
+            <summary>Http缓存。以Url作为缓存键</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCache.Expriod">
+            <summary>过期时间。单位是秒，默认0秒，表示永不过期</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCache.Items">
+            <summary>缓存项</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpCacheItem">
+            <summary>Http缓存项。</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCacheItem.Url">
+            <summary>网址</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCacheItem.Request">
+            <summary>请求</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCacheItem.Response">
+            <summary>响应</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpCacheItem.Stream">
+            <summary>数据流</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpServer">
+            <summary>Http服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpServer.#ctor">
+            <summary>实例化一个Http服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpSession">
+            <summary>Http会话</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpHeader">
+            <summary>Http头部</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.IsResponse">
+            <summary>是否响应。以Method是否为空作为依据。</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Method">
+            <summary>请求方法</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Url">
+            <summary>请求文档</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Version">
+            <summary>协议版本</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.StatusCode">
+            <summary>状态码</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.StatusDescription">
+            <summary>状态描述</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Headers">
+            <summary>头部</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.IsFinish">
+            <summary>是否完整Http头。是否双换行结束</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpHeader._last">
+            <summary>未完成分析时剩下部分</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Host">
+            <summary>主机头</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Referer">
+            <summary>引用页</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Location">
+            <summary>重定向地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.ContentLength">
+            <summary>内容长度</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.ContentType">
+            <summary>内容类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.Connection">
+            <summary>是否保持连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.KeepAlive">
+            <summary>是否保持连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.ProxyConnection">
+            <summary>是否保持代理连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.ProxyKeepAlive">
+            <summary>是否保持代理连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Http.HttpHeader.RawUrl">
+            <summary>原始地址。直接代理会包括全路径</summary>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.Read(System.IO.Stream,NewLife.Net.Http.HttpHeaderReadMode)">
+            <summary>从流中读取Http头部对象。如果不是Http头部，指针要回到原来位置</summary>
+            <param name="stream"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.ReadFirst(System.IO.Stream)">
+            <summary>仅读取第一行。如果不是Http头部，指针要回到原来位置</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.ReadHeaders(System.IO.Stream)">
+            <summary>读取头部键值</summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.Write(System.IO.Stream)">
+            <summary>往流中写入Http头</summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.GetStream">
+            <summary>获取Http头的数据流</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.ToString">
+            <summary>已重载。以文本形式呈现整个头部</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Http.HttpHeader.ToText">
+            <summary>文本形式</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpHeaderReadMode">
+            <summary>读取模式</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpHeaderReadMode.RequestOrResponse">
+            <summary>请求或响应</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpHeaderReadMode.Request">
+            <summary>请求</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpHeaderReadMode.Response">
+            <summary>响应</summary>
+        </member>
+        <member name="T:NewLife.Net.Http.HttpVerb">
+            <summary>Http谓语</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.Unparsed">
+            <summary>未解析</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.Unknown">
+            <summary>未知</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.GET">
+            <summary>获取</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.PUT">
+            <summary>推送</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.HEAD">
+            <summary>跟GET一样，只不过响应包只包括头部而没有内容</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.POST">
+            <summary>提交</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.DEBUG">
+            <summary>调试</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.TRACE">
+            <summary>跟踪</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.CONNECT">
+            <summary>连接</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.OPTIONS">
+            <summary>选项</summary>
+        </member>
+        <member name="F:NewLife.Net.Http.HttpVerb.DELETE">
+            <summary>删除</summary>
+        </member>
+        <member name="T:NewLife.Net.ISO.COTP">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.COTP.Length">
+            <summary>长度</summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.COTP.PDUType">
+            <summary>类型</summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.COTP.Flag">
+            <summary>标识位</summary>
+        </member>
+        <member name="T:NewLife.Net.ISO.TPKT">
+            <summary>ISO transport services on top of the TCP</summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.TPKT.Version">
+            <summary>版本</summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.TPKT.Reserved">
+            <summary>保留</summary>
+        </member>
+        <member name="P:NewLife.Net.ISO.TPKT.Length">
+            <summary>长度</summary>
+        </member>
+        <member name="T:NewLife.Net.Modbus.DataStore">
+            <summary>默认数据存储</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.DataStore.Inputs">
+            <summary>离散量输入</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.DataStore.Coils">
+            <summary>线圈</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.DataStore.InputRegisters">
+            <summary>输入寄存器</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.DataStore.HoldingRegisters">
+            <summary>保持寄存器</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.DataStore.#ctor">
+            <summary>默认初始化</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.DataStore.#ctor(NewLife.Net.Modbus.IBitStore,NewLife.Net.Modbus.IWordStore)">
+            <summary>使用两个存储器初始化，两两共用</summary>
+            <param name="bit"></param>
+            <param name="word"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.DataStore.#ctor(NewLife.Net.Modbus.IBitStore,NewLife.Net.Modbus.IBitStore,NewLife.Net.Modbus.IWordStore,NewLife.Net.Modbus.IWordStore)">
+            <summary>使用四个存储器初始化</summary>
+            <param name="bitInputs"></param>
+            <param name="bitCoils"></param>
+            <param name="wordInput"></param>
+            <param name="holding"></param>
+        </member>
+        <member name="T:NewLife.Net.Modbus.BitStore">
+            <summary>默认位存储</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.BitStore.Count">
+            <summary>数量</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Modbus.BitStore.Item(System.Int32)">
+            <summary>索引器</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.BitStore.Read(System.Int32)">
+            <summary>读取状态</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.BitStore.Write(System.Int32,System.Boolean)">
+            <summary>写入状态</summary>
+            <param name="i"></param>
+            <param name="flag"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.BitStore.#ctor">
+            <summary>初始化</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.BitStore.#ctor(System.Int32)">
+            <summary>初始化指定个数存储位</summary>
+            <param name="n"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.BitStore.ToArray">
+            <summary>数组形式</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.WordStore">
+            <summary>默认字存储</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.WordStore.Count">
+            <summary>数量</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Modbus.WordStore.Item(System.Int32)">
+            <summary>索引器</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.WordStore.Read(System.Int32)">
+            <summary>读取</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.WordStore.Write(System.Int32,System.UInt16)">
+            <summary>写入</summary>
+            <param name="i"></param>
+            <param name="value">数值</param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.WordStore.#ctor">
+            <summary>初始化</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.WordStore.#ctor(System.Int32)">
+            <summary>初始化指定个数存储位</summary>
+            <param name="n"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.WordStore.ToArray">
+            <summary>数组形式</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.Errors">
+            <summary>错误代码</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.FunctionCode">
+            <summary>错误的功能代码</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.Address">
+            <summary>错误的数据地址</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.Value">
+            <summary>错误的数据值</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.Count">
+            <summary>错误的个数</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.ProcessError">
+            <summary>处理出错</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.MessageLength">
+            <summary>错误的数据长度</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.Errors.CrcError">
+            <summary>Crc校验错误</summary>
+        </member>
+        <member name="T:NewLife.Net.Modbus.IDataStore">
+            <summary>数据存储接口</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IDataStore.Inputs">
+            <summary>离散量输入</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IDataStore.Coils">
+            <summary>线圈</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IDataStore.InputRegisters">
+            <summary>输入寄存器</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IDataStore.HoldingRegisters">
+            <summary>保持寄存器</summary>
+        </member>
+        <member name="T:NewLife.Net.Modbus.IBitStore">
+            <summary>位存储接口</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IBitStore.Count">
+            <summary>数量</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IBitStore.Item(System.Int32)">
+            <summary>索引器</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IBitStore.Read(System.Int32)">
+            <summary>读取状态</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IBitStore.Write(System.Int32,System.Boolean)">
+            <summary>写入状态</summary>
+            <param name="i"></param>
+            <param name="flag"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IBitStore.ToArray">
+            <summary>数组形式</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.IWordStore">
+            <summary>字存储接口</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IWordStore.Count">
+            <summary>寄存器数</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.Modbus.IWordStore.Item(System.Int32)">
+            <summary>索引器</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IWordStore.Read(System.Int32)">
+            <summary>读取</summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IWordStore.Write(System.Int32,System.UInt16)">
+            <summary>写入</summary>
+            <param name="i"></param>
+            <param name="value">数值</param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IWordStore.ToArray">
+            <summary>数组形式</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.StoreHelper">
+            <summary>存储类助手</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.StoreHelper.ReadUInt32(NewLife.Net.Modbus.IWordStore,System.Int32)">
+            <summary>读取整个UInt32</summary>
+            <param name="store"></param>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.StoreHelper.WriteUInt32(NewLife.Net.Modbus.IWordStore,System.Int32,System.UInt32)">
+            <summary>写入整个UInt32</summary>
+            <param name="store"></param>
+            <param name="i"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.IOHelper">
+            <summary>IO操作助手</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IOHelper.ReadBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>从字节数组中读取一段数据</summary>
+            <param name="data"></param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IOHelper.ReadUInt16(System.Byte[],System.Int32)">
+            <summary>从字节数据指定位置读取一个无符号16位整数</summary>
+            <param name="data"></param>
+            <param name="offset">偏移</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IOHelper.WriteUInt16(System.Byte[],System.Int32,System.Int32)">
+            <summary>向字节数组的指定位置写入一个无符号16位整数</summary>
+            <param name="data"></param>
+            <param name="offset">偏移</param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IOHelper.Write(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>向字节数组写入一片数据</summary>
+            <param name="data"></param>
+            <param name="srcOffset"></param>
+            <param name="buf"></param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.IOHelper.Crc(System.Byte[],System.Int32,System.Int32)">
+            <summary>Crc校验</summary>
+            <param name="data"></param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.MBFunction">
+            <summary>Modbus功能码</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.ReadCoils">
+            <summary>读取线圈状态。取得一组逻辑线圈的当前状态（ON/OFF) </summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.ReadInputs">
+            <summary>读取离散量输入状态。取得一组开关输入的当前状态（ON/OFF) </summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.ReadHoldingRegisters">
+            <summary>读取保持寄存器。在一个或多个保持寄存器中取得当前的二进制值 </summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.ReadInputRegisters">
+            <summary>读取输入寄存器。在一个或多个输入寄存器中取得当前的二进制值</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.WriteSingleCoil">
+            <summary>强置单线圈。强置一个逻辑线圈的通断状态</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.WriteSingleRegister">
+            <summary>预置单寄存器。把具体二进值装入一个保持寄存器</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.Diagnostics">
+            <summary>回送诊断校验。把诊断校验报文送从机，以对通信处理进行评鉴</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.WriteMultipleCoils">
+            <summary>强置多线圈。强置一串连续逻辑线圈的通断</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.WriteMultipleRegisters">
+            <summary>预置多寄存器。把具体的二进制值装入一串连续的保持寄存器</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.MBFunction.ReportIdentity">
+            <summary>报告从机标识。可使主机判断编址从机的类型及该从机运行指示灯的状态</summary>
+        </member>
+        <member name="T:NewLife.Net.Modbus.ModbusEntity">
+            <summary>Modbus实体</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.ModbusEntity.HEAD_OFFSET">
+            <summary>头部位移，RS232=0，RS485=1</summary>
+        </member>
+        <member name="F:NewLife.Net.Modbus.ModbusEntity.NO_DATA_LENGTH">
+            <summary>不包含数据部分的固定长度。地址、功能码、校验码</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusEntity.Host">
+            <summary>主机地址。用于485编码</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusEntity.Function">
+            <summary>功能码</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusEntity.IsException">
+            <summary>是否异常</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusEntity.Data">
+            <summary>数据</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusEntity.Crc">
+            <summary>校验数据</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusEntity.Parse(System.Byte[],System.Int32,System.Int32)">
+            <summary>分析字节数组</summary>
+            <param name="data"></param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusEntity.ToArray">
+            <summary>转为字节数组</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusEntity.SetError(NewLife.Net.Modbus.Errors)">
+            <summary>设置错误码</summary>
+            <param name="errorCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusEntity.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.ModbusException">
+            <summary>Modbus异常</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusException.Error">
+            <summary>错误代码</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusException.#ctor(NewLife.Net.Modbus.Errors)">
+            <summary>初始化</summary>
+            <param name="error"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusException.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.ModbusMaster">
+            <summary>Modbus主站</summary>
+            <example>
+            <code>
+            var master = new ModbusMaster();
+            master.Transport = new UdpTransport("127.0.0.1", 502);
+            
+            Assert.IsTrue(master.Diagnostics(), "诊断错误");
+            
+            var ids = master.ReportIdentity();
+            Assert.IsNotNull(ids, "标识不能为空");
+            </code>
+            </example>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusMaster.Transport">
+            <summary>传输接口</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusMaster.Host">
+            <summary>主机地址。用于485编码</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusMaster.EnableDebug">
+            <summary>启用调试</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusMaster.Delay">
+            <summary>发送数据后接收数据前的延迟时间，默认0毫秒</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.Finalize">
+            <summary>析构</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.Dispose">
+            <summary>销毁</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.Dispose(System.Boolean)">
+            <summary>销毁</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.Process(NewLife.Net.Modbus.ModbusEntity,System.Int32)">
+            <summary>处理指令</summary>
+            <param name="entity">指令实体</param>
+            <param name="expect">预期返回数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadCoil(System.Int32)">
+            <summary>读取线圈状态</summary>
+            <remarks>
+            请求：0x01|2字节起始地址|2字节线圈数量(1~2000)
+            响应：0x01|1字节字节计数|n字节线圈状态（n=输出数量/8，如果余数不为0，n=n+1）
+            </remarks>
+            <param name="addr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadCoils(System.Int32,System.UInt16)">
+            <summary>读取线圈状态</summary>
+            <remarks>
+            请求：0x01|2字节起始地址|2字节线圈数量(1~2000)
+            响应：0x01|1字节字节计数|n字节线圈状态（n=输出数量/8，如果余数不为0，n=n+1）
+            </remarks>
+            <param name="addr"></param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadInputs(System.Int32,System.UInt16)">
+            <summary>读取离散量输入</summary>
+            <remarks>
+            请求：0x02|2字节起始地址|2字节输入数量(1~2000)
+            响应：0x02|1字节字节计数|n字节输入状态（n=输入数量/8，如果余数不为0，n=n+1）
+            </remarks>
+            <param name="addr"></param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.WriteSingleCoil(System.Int32,System.Boolean)">
+            <summary>写单个线圈</summary>
+            <remarks>
+            请求：0x05|2字节输出地址|2字节输出值（0x0000/0xFF00）
+            响应：0x05|2字节输出地址|2字节输出值（0x0000/0xFF00）
+            </remarks>
+            <param name="addr"></param>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.WriteMultipleCoils(System.Int32,System.Boolean[])">
+            <summary>写多个线圈</summary>
+            <remarks>
+            请求：0x0F|2字节起始地址|2字节输出数量（1~1698）|1字节字节计数|n字节输出值（n=输出数量/8，如果余数不为0，n=n+1）
+            响应：0x0F|2字节起始地址|2字节输出数量
+            </remarks>
+            <param name="addr"></param>
+            <param name="flags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadHoldingRegister(System.Int32)">
+            <summary>读取保持寄存器</summary>
+            <remarks>
+            请求：0x03|2字节起始地址|2字节寄存器数量（1~2000）
+            响应：0x03|1字节字节数|n*2字节寄存器值
+            </remarks>
+            <param name="addr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadHoldingRegisters(System.Int32,System.UInt16)">
+            <summary>读取保持寄存器</summary>
+            <remarks>
+            请求：0x03|2字节起始地址|2字节寄存器数量（1~2000）
+            响应：0x03|1字节字节数|n*2字节寄存器值
+            </remarks>
+            <param name="addr"></param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReadInputRegisters(System.Int32,System.UInt16)">
+            <summary>读取输入寄存器</summary>
+            <remarks>
+            请求：0x04|2字节起始地址|2字节输入寄存器数量（1~2000）
+            响应：0x04|1字节字节数|n*2字节输入寄存器
+            </remarks>
+            <param name="addr"></param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.WriteSingleRegister(System.Int32,System.UInt16)">
+            <summary>写单个寄存器</summary>
+            <remarks>
+            请求：0x06|2字节寄存器地址|2字节寄存器值
+            响应：0x06|2字节寄存器地址|2字节寄存器值
+            </remarks>
+            <param name="addr"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.WriteMultipleRegisters(System.Int32,System.UInt16[])">
+            <summary>写多个寄存器</summary>
+            <remarks>
+            请求：0x10|2字节起始地址|2字节寄存器数量（1~123）|1字节字节计数|n*2寄存器值
+            响应：0x10|2字节起始地址|2字节寄存器数量
+            </remarks>
+            <param name="addr"></param>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.Diagnostics">
+            <summary>诊断</summary>
+            <remarks>
+            01080000801A
+            请求：0x08|2字节子功能|n*2字节数据
+            响应：0x08|2字节子功能|n*2字节数据
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusMaster.ReportIdentity">
+            <summary>返回标识</summary>
+            <remarks>
+            0111C02C
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.ModbusSlave">
+            <summary>Modbus从站</summary>
+            <example>
+            <code>
+            var slave = new ModbusSlave();
+            slave.Transport = new UdpTransport(502);
+            slave.Listen();
+            </code>
+            </example>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusSlave.Host">
+            <summary>主站ID</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusSlave.DataStore">
+            <summary>数据存储</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusSlave.Transports">
+            <summary>传输口</summary>
+        </member>
+        <member name="P:NewLife.Net.Modbus.ModbusSlave.EnableDebug">
+            <summary>启用调试</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Finalize">
+            <summary>析构</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Dispose">
+            <summary>销毁</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Dispose(System.Boolean)">
+            <summary>销毁</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Listen(NewLife.Net.ITransport)">
+            <summary>开始监听</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Process(System.Byte[])">
+            <summary>处理Modbus消息</summary>
+            <param name="buf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Process(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>处理Modbus消息</summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.ReadCoils(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>读状态 离散量输入/线圈</summary>
+            <remarks>
+            线圈
+            请求：0x01|2字节起始地址|2字节线圈数量(1~2000)
+            响应：0x01|1字节字节计数|n字节线圈状态（n=输出数量/8，如果余数不为0，n=n+1）
+            
+            离散量输入
+            请求：0x02|2字节起始地址|2字节输入数量(1~2000)
+            响应：0x02|1字节字节计数|n字节输入状态（n=输入数量/8，如果余数不为0，n=n+1）
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.WriteSingleCoil(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>写单个线圈</summary>
+            <remarks>
+            请求：0x05|2字节输出地址|2字节输出值（0x0000/0xFF00）
+            响应：0x05|2字节输出地址|2字节输出值（0x0000/0xFF00）
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.WriteMultipleCoils(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>写多个线圈</summary>
+            <remarks>
+            请求：0x0F|2字节起始地址|2字节输出数量（1~1698）|1字节字节计数|n字节输出值（n=输出数量/8，如果余数不为0，n=n+1）
+            响应：0x0F|2字节起始地址|2字节输出数量
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="E:NewLife.Net.Modbus.ModbusSlave.OnReadCoil">
+            <summary>读取线圈前触发</summary>
+        </member>
+        <member name="E:NewLife.Net.Modbus.ModbusSlave.OnWriteCoil">
+            <summary>写入线圈后触发</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.ReadRegisters(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>读取寄存器 输入寄存器/保持寄存器</summary>
+            <remarks>
+            保持寄存器
+            请求：0x03|2字节起始地址|2字节寄存器数量（1~2000）
+            响应：0x03|1字节字节数|n*2字节寄存器值
+            
+            输入寄存器
+            请求：0x04|2字节起始地址|2字节输入寄存器数量（1~2000）
+            响应：0x04|1字节字节数|n*2字节输入寄存器
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.WriteSingleRegister(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>写单个寄存器</summary>
+            <remarks>
+            请求：0x06|2字节寄存器地址|2字节寄存器值
+            响应：0x06|2字节寄存器地址|2字节寄存器值
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.WriteMultipleRegisters(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>写多个寄存器</summary>
+            <remarks>
+            请求：0x10|2字节起始地址|2字节寄存器数量（1~123）|1字节字节计数|n*2寄存器值
+            响应：0x10|2字节起始地址|2字节寄存器数量
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="E:NewLife.Net.Modbus.ModbusSlave.OnReadRegister">
+            <summary>读取寄存器前触发</summary>
+        </member>
+        <member name="E:NewLife.Net.Modbus.ModbusSlave.OnWriteRegister">
+            <summary>写入寄存器后触发</summary>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.Diagnostics(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>诊断</summary>
+            <remarks>
+            请求：0x08|2字节子功能|n*2字节数据
+            响应：0x08|2字节子功能|n*2字节数据
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Modbus.ModbusSlave.ReportIdentity(NewLife.Net.Modbus.ModbusEntity)">
+            <summary>报告从站ID</summary>
+            <remarks>
+            请求：0x11
+            响应：0x11|1字节字节计数|从站ID|运行指示状态（0x00=OFF,0xFF=ON）|附加数据
+            </remarks>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Modbus.ModbusHandler">
+            <summary>事件委托</summary>
+            <param name="entity"></param>
+            <param name="index"></param>
+            <param name="count"></param>
+        </member>
+        <member name="T:NewLife.Net.Model.DataEventArgs">
+            <summary>数据接收事件参数</summary>
+        </member>
+        <member name="P:NewLife.Net.Model.DataEventArgs.Buffer">
+            <summary>缓冲区</summary>
+        </member>
+        <member name="P:NewLife.Net.Model.DataEventArgs.Offset">
+            <summary>偏移</summary>
+        </member>
+        <member name="P:NewLife.Net.Model.DataEventArgs.Count">
+            <summary>字节数</summary>
+        </member>
+        <member name="M:NewLife.Net.Model.DataEventArgs.#ctor(System.Byte[],System.Int32,System.Int32)">
+            <summary>实例化</summary>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+        </member>
+        <member name="T:NewLife.Net.MQTT.MqttMessage">
+            <summary>MQTT（Message Queue Telemetry Transport）,遥测传输协议</summary>
+            <remarks>
+            提供订阅/发布模式，更为简约、轻量，易于使用，针对受限环境（带宽低、网络延迟高、网络通信不稳定），可以简单概括为物联网打造，官方总结特点如下：
+            1.使用发布/订阅消息模式，提供一对多的消息发布，解除应用程序耦合。
+            2. 对负载内容屏蔽的消息传输。
+            3. 使用 TCP/IP 提供网络连接。
+            4. 有三种消息发布服务质量：
+            “至多一次”，消息发布完全依赖底层 TCP/IP 网络。会发生消息丢失或重复。这一级别可用于如下情况，环境传感器数据，丢失一次读记录无所谓，因为不久后还会有第二次发送。
+            “至少一次”，确保消息到达，但消息重复可能会发生。
+            “只有一次”，确保消息到达一次。这一级别可用于如下情况，在计费系统中，消息重复或丢失会导致不正确的结果。
+            5. 小型传输，开销很小（固定长度的头部是 2 字节），协议交换最小化，以降低网络流量。
+            6. 使用 Last Will 和 Testament 特性通知有关各方客户端异常中断的机制。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.MQTT.MqttMessage.Type">
+            <summary>消息类型</summary>
+        </member>
+        <member name="P:NewLife.Net.MQTT.MqttMessage.Dup">
+            <summary>打开标识。值为1时表示当前消息先前已经被传送过</summary>
+            <remarks>
+            保证消息可靠传输，默认为0，只占用一个字节，表示第一次发送。不能用于检测消息重复发送等。只适用于客户端或服务器端尝试重发PUBLISH, PUBREL, SUBSCRIBE 或 UNSUBSCRIBE消息，注意需要满足以下条件：
+            当QoS > 0
+            消息需要回复确认
+            此时，在可变头部需要包含消息ID。当值为1时，表示当前消息先前已经被传送过。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.MQTT.MqttMessage.QoS">
+            <summary>QoS等级</summary>
+        </member>
+        <member name="P:NewLife.Net.MQTT.MqttMessage.Retain">
+            <summary>保持。仅针对PUBLISH消息。不同值，不同含义</summary>
+            <remarks>
+            1：表示发送的消息需要一直持久保存（不受服务器重启影响），不但要发送给当前的订阅者，并且以后新来的订阅了此Topic name的订阅者会马上得到推送。
+            备注：新来乍到的订阅者，只会取出最新的一个RETAIN flag = 1的消息推送。
+            0：仅仅为当前订阅者推送此消息。
+            假如服务器收到一个空消息体(zero-length payload)、RETAIN = 1、已存在Topic name的PUBLISH消息，服务器可以删除掉对应的已被持久化的PUBLISH消息。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.MQTT.MqttMessage.Length">
+            <summary>长度。7位压缩编码整数</summary>
+            <remarks>
+            在当前消息中剩余的byte(字节)数，包含可变头部和负荷(内容)。
+            单个字节最大值：01111111，16进制：0x7F，10进制为127。
+            MQTT协议规定，第八位（最高位）若为1，则表示还有后续字节存在。
+            </remarks>
+        </member>
+        <member name="T:NewLife.Net.MQTT.MqttType">
+            <summary>消息类型</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Reserved">
+            <summary>保留</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Connect">
+            <summary>连接</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.ConnAck">
+            <summary>连接确认</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Publish">
+            <summary>发布消息</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PubAck">
+            <summary>发布确认</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PubRec">
+            <summary>发布已接收</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PubRel">
+            <summary>发布已释放</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PubComp">
+            <summary>发布已完成</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Subscribe">
+            <summary>客户端订阅请求</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.SubAck">
+            <summary>订阅确认</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.UnSubscribe">
+            <summary>取消订阅</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.UnSubAck">
+            <summary>取消订阅确认</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PingReq">
+            <summary>Ping请求</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.PingResp">
+            <summary>Ping响应</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Disconnect">
+            <summary>断开连接</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.MqttType.Reserved2">
+            <summary>保留</summary>
+        </member>
+        <member name="T:NewLife.Net.MQTT.QualityOfService">
+            <summary>服务质量</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.QualityOfService.Q0">
+            <summary>至多一次 	发完即丢弃</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.QualityOfService.Q1">
+            <summary>至少一次 	需要确认回复</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.QualityOfService.Q2">
+            <summary>只有一次 	需要确认回复</summary>
+        </member>
+        <member name="F:NewLife.Net.MQTT.QualityOfService.Q3">
+            <summary>保留</summary>
+        </member>
+        <member name="T:NewLife.Net.IO.FileClient">
+            <summary>文件客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileClient.Client">
+            <summary>客户端连接</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileClient.OnDispose(System.Boolean)">
+            <summary>销毁客户端</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileClient.Connect(System.String,System.Int32)">
+            <summary>连接文件服务器</summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileClient.SendFile(System.String)">
+            <summary>发送文件</summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileClient.SendDirectory(System.String)">
+            <summary>发送目录</summary>
+            <param name="directoryName"></param>
+        </member>
+        <member name="P:NewLife.Net.IO.FileClient.Log">
+            <summary>日志对象</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileClient.WriteLog(System.String,System.Object[])">
+            <summary>输出日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NewLife.Net.IO.FileFormat">
+            <summary>文件格式</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileFormat.Name">
+            <summary>文件名</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileFormat.Length">
+            <summary>文件大小</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileFormat.Checksum">
+            <summary>头部检验和</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileFormat.Crc">
+            <summary>计算出来的32位头部检验码</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileFormat.#ctor">
+            <summary>初始化一个实例</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileFormat.#ctor(System.String,System.String)">
+            <summary>使用文件路径和根路径初始化一个文件格式对象</summary>
+            <param name="fileName"></param>
+            <param name="root"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileFormat.Read(System.IO.Stream)">
+            <summary>读取</summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileFormat.Write(System.IO.Stream)">
+            <summary>写入</summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileFormat.GetHeader">
+            <summary>获取头部数据流</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.IO.FileServer">
+            <summary>文件服务端</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileServer.SavedPath">
+            <summary>保存路径</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileServer.#ctor">
+            <summary>实例化一个文件服务</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileServer.AttachServer(NewLife.Net.ISocketServer)">
+            <summary>附加服务器</summary>
+            <param name="server"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.IO.FileSession">
+            <summary>文件服务会话</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileSession.Inf">
+            <summary>文件信息</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileSession.Length">
+            <summary>长度</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileSession.Stream">
+            <summary>文件流</summary>
+        </member>
+        <member name="P:NewLife.Net.IO.FileSession.StartTime">
+            <summary>开始时间</summary>
+        </member>
+        <member name="M:NewLife.Net.IO.FileSession.OnDispose(System.Boolean)">
+            <summary>销毁会话</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.IO.FileSession.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>处理收到的数据</summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:NewLife.Net.NTP.NTPLeapIndicator">
+            <summary>Leap indicator</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPLeapIndicator.NoWarning">
+            <summary>0 - No warning</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPLeapIndicator.LastMinute61">
+            <summary>1 - Last minute has 61 seconds</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPLeapIndicator.LastMinute59">
+            <summary>2 - Last minute has 59 seconds</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPLeapIndicator.Alarm">
+            <summary>3 - Alarm condition (clock not synchronized)</summary>
+        </member>
+        <member name="T:NewLife.Net.NTP.NTPMode">
+            <summary>Mode</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.Reserved">
+            <summary>未知</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.SymmetricActive">
+            <summary>1 - Symmetric active</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.SymmetricPassive">
+            <summary>2 - Symmetric pasive</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.Client">
+            <summary>3 - Client</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.Server">
+            <summary>4 - Server</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.Broadcast">
+            <summary>5 - Broadcast</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.ReservedForNTPControlMessage">
+            <summary>6 - reserved for NTP control message</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPMode.ReservedForPrivateUse">
+            <summary>7 - reserved for private use</summary>
+        </member>
+        <member name="T:NewLife.Net.NTP.NTPStratum">
+            <summary>Stratum</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPStratum.Unspecified">
+            <summary>0 - unspecified or unavailable</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPStratum.PrimaryReference">
+            <summary>1 - primary reference (e.g. radio-clock)</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPStratum.SecondaryReference">
+            <summary>2-15 - secondary reference (via NTP or SNTP)</summary>
+        </member>
+        <member name="F:NewLife.Net.NTP.NTPStratum.Reserved">
+            <summary>16-255 - reserved</summary>
+        </member>
+        <member name="T:NewLife.Net.NTP.NTP">
+            <summary>Network Time Protocol（NTP）是用来使计算机时间同步化的一种协议</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.LeapIndicator">
+            <summary>跳跃指示器，警告在当月最后一天的最终时刻插入的迫近闺秒（闺秒）。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.VersionNumber">
+            <summary>版本号。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.Mode">
+            <summary>工作模式。该字段包括以下值：0－预留；1－对称行为；3－客户机；4－服务器；5－广播；6－NTP控制信息。NTP协议具有3种工作模式，分别为主/被动对称模式、客户/服务器模式、广播模式。在主/被动对称模式中，有一对一的连接，双方均可同步对方或被对方同步，先发出申请建立连接的一方工作在主动模式下，另一方工作在被动模式下；客户/服务器模式与主/被动模式基本相同，惟一区别在于客户方可被服务器同步，但服务器不能被客户同步；在广播模式中，有一对多的连接，服务器不论客户工作在何种模式下，都会主动发出时间信息，客户根据此信息调整自己的时间。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.Stratum">
+            <summary>对本地时钟级别的整体识别。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.PollInterval">
+            <summary>有符号整数表示连续信息间的最大间隔。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.Precision">
+            <summary>有符号整数表示本地时钟精确度。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.RootDelay">
+            <summary>表示到达主参考源的一次往复的总延迟，它是有15～16位小数部分的符号定点小数。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.RootDispersion">
+            <summary>表示一次到达主参考源的标准误差，它是有15～16位小数部分的无符号定点小数。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.ReferenceID">
+            <summary>识别特殊参考源。</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.ReferenceTimestamp">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.OriginateTimestamp">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.ReceiveTimestamp">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.TransmitTimestamp">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.KeyID">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.NTP.NTP.MessageDigest">
+            <summary>消息签名</summary>
+        </member>
+        <member name="T:NewLife.Net.P2P.HoleServer">
+            <summary>打洞服务器</summary>
+            <remarks>
+            Tcp打洞流程（A想连接B）：
+            1，客户端A通过路由器NAT-A连接打洞服务器S
+            2，A向S发送标识，异步等待响应
+            3，S记录A的标识和会话<see cref="T:NewLife.Net.ISocketClient"/>
+            3，客户端B，从业务通道拿到标识
+            4，B通过路由器NAT-B连接打洞服务器S，异步等待响应
+            5，B向S发送标识
+            6，S找到匹配标识，同时向AB会话响应对方的外网地址，会话结束
+            7，AB收到响应，B先连接A，A暂停一会后连接B
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.P2P.HoleServer.Clients">
+            <summary>客户端集合</summary>
+        </member>
+        <member name="M:NewLife.Net.P2P.HoleServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>收到数据时</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.P2P.P2PClient">
+            <summary>P2P客户端</summary>
+            <remarks>
+            Tcp打洞流程（A想连接B）：
+            1，客户端A通过路由器NAT-A连接打洞服务器S
+            2，A向S发送标识，异步等待响应
+            3，S记录A的标识和会话<see cref="T:NewLife.Net.ISocketClient"/>
+            3，客户端B，从业务通道拿到标识
+            4，B通过路由器NAT-B连接打洞服务器S，异步等待响应
+            5，B向S发送标识
+            6，S找到匹配标识，同时向AB会话响应对方的外网地址，会话结束
+            7，AB收到响应，B先连接A，A暂停一会后连接B
+            
+            经鉴定，我认为网络上所有关于TCP穿透的文章，全部都是在胡扯
+            不外乎几种可能：
+            1，双方都在同一个内网
+            2，通过服务器中转所有数据
+            3，臆断，认为那样子就可行。包括许多论文也是这个说法，我中的这招，不经过NAT会成功，经过最流行的TP-LINK就无法成功
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.Server">
+            <summary>客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.HoleServer">
+            <summary>打洞服务器地址</summary>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.Client">
+            <summary>客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.ProtocolType">
+            <summary>协议</summary>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.ParterAddress">
+            <summary>目标伙伴地址</summary>
+        </member>
+        <member name="P:NewLife.Net.P2P.P2PClient.Success">
+            <summary>是否成功</summary>
+        </member>
+        <member name="M:NewLife.Net.P2P.P2PClient.EnsureServer">
+            <summary></summary>
+        </member>
+        <member name="M:NewLife.Net.P2P.P2PClient.Start(System.String)">
+            <summary>开始处理</summary>
+            <param name="name">名称</param>
+        </member>
+        <member name="T:NewLife.Net.P2P.P2PTest">
+            <summary>P2P测试</summary>
+        </member>
+        <member name="M:NewLife.Net.P2P.P2PTest.StartHole(System.Int32)">
+            <summary>开始</summary>
+            <param name="port"></param>
+        </member>
+        <member name="M:NewLife.Net.P2P.P2PTest.StartClient(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>开始客户端</summary>
+            <param name="name">名称</param>
+            <param name="server"></param>
+            <param name="serverport"></param>
+            <param name="isTcp"></param>
+        </member>
+        <member name="T:NewLife.Net.Pop3.Pop3Client">
+            <summary>Pop3客户端</summary>
+        </member>
+        <member name="T:NewLife.Net.Pop3.Pop3Server">
+            <summary>Pop3服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Pop3.Pop3Server.#ctor">
+            <summary>实例化一个Pop3服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Pop3.Pop3Session">
+            <summary>Pop3会话</summary>
+        </member>
+        <member name="T:NewLife.Net.Proxy.HttpProxy">
+            <summary>Http代理。可用于代理各种Http通讯请求。</summary>
+            <remarks>Http代理请求与普通请求唯一的不同就是Uri，Http代理请求收到的是可能包括主机名的完整Uri</remarks>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="E:NewLife.Net.Proxy.HttpProxy.OnRequest">
+            <summary>收到请求时发生。</summary>
+        </member>
+        <member name="E:NewLife.Net.Proxy.HttpProxy.OnResponse">
+            <summary>收到响应时发生。</summary>
+        </member>
+        <member name="E:NewLife.Net.Proxy.HttpProxy.OnRequestBody">
+            <summary>收到请求主体时发生。</summary>
+        </member>
+        <member name="E:NewLife.Net.Proxy.HttpProxy.OnResponseBody">
+            <summary>收到响应主体时发生。</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.RaiseEvent(NewLife.Net.Proxy.HttpProxy.Session,NewLife.Net.Proxy.HttpProxy.EventKind,NewLife.Net.Proxy.HttpProxyEventArgs)">
+            <summary>触发事件</summary>
+            <param name="session"></param>
+            <param name="kind"></param>
+            <param name="he"></param>
+            <returns>返回是否取消操作</returns>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpProxy.EnableCache">
+            <summary>激活缓存</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpProxy.Cache">
+            <summary>Http缓存</summary>
+        </member>
+        <member name="T:NewLife.Net.Proxy.HttpProxy.Session">
+            <summary>Http反向代理会话</summary>
+        </member>
+        <member name="F:NewLife.Net.Proxy.HttpProxy.Session.UnFinishedRequest">
+            <summary>当前正在处理的请求。一个连接同时只能处理一个请求，除非是Http 1.2</summary>
+        </member>
+        <member name="F:NewLife.Net.Proxy.HttpProxy.Session.Request">
+            <summary>已完成处理，正在转发数据的请求头</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到客户端发来的数据。子类可通过重载该方法来修改数据</summary>
+            <remarks>
+            如果数据包包括头部和主体，可以分开处理。
+            最麻烦的就是数据包不是一个完整的头部，还落了一部分在后面的包上。
+            </remarks>
+            <param name="e"></param>
+        </member>
+        <member name="F:NewLife.Net.Proxy.HttpProxy.Session.KeepAlive">
+            <summary>是否保持连接</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.OnRequest(NewLife.Net.Http.HttpHeader,NewLife.Net.ReceivedEventArgs)">
+            <summary>收到请求时</summary>
+            <param name="entity"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.GetCache(NewLife.Net.Http.HttpHeader,NewLife.Net.ReceivedEventArgs)">
+            <summary>检查是否存在缓存，如果存在，则直接返回缓存</summary>
+            <param name="entity"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.OnReceiveRemote(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到客户端发来的数据。子类可通过重载该方法来修改数据</summary>
+            <param name="e"></param>
+            <returns>修改后的数据</returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.SetCache(NewLife.Net.Http.HttpHeader,NewLife.Net.ReceivedEventArgs)">
+            <summary>如果符合缓存条件，则设置缓存</summary>
+            <param name="entity"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.Session.OnRemoteDispose(NewLife.Net.ISocketClient)">
+            <summary>远程连接断开时触发。默认销毁整个会话，子类可根据业务情况决定客户端与代理的链接是否重用。</summary>
+            <param name="session"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.InternetSetOption(System.IntPtr,System.Int32,System.IntPtr,System.Int32)">
+            <summary>定义API函数</summary>
+            <param name="hInternet"></param>
+            <param name="dwOption"></param>
+            <param name="lpBuffer"></param>
+            <param name="lpdwBufferLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.GetIEProxy">
+            <summary>获取IE代理设置</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxy.SetIEProxy(System.String,System.Boolean)">
+            <summary>设置IE代理。传入空地址取消代理设置</summary>
+            <param name="proxy">地址与端口以冒号分开</param>
+            <param name="proxyOverride">代理是否跳过本地地址</param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.HttpProxyEventArgs">
+            <summary>Http代理事件参数</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpProxyEventArgs.Header">
+            <summary>头部</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpProxyEventArgs.Stream">
+            <summary>主体数据流。外部可以更改，如果只是读取，请一定注意保持指针在原来的位置</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpProxyEventArgs.Cancel">
+            <summary>是否取消操作</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxyEventArgs.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpProxyEventArgs.#ctor(NewLife.Net.Http.HttpHeader,System.IO.Stream)">
+            <summary>实例化</summary>
+            <param name="header"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.HttpReverseProxy">
+            <summary>Http反向代理。把所有收到的Http请求转发到目标服务器。</summary>
+            <remarks>
+            主要是修改Http请求头为正确的主机，还有可能修改Http响应。
+            
+            经典用途：
+            1，缓存。代理缓存某些静态资源的请求结果，减少对服务器的请求压力
+            2，拦截。禁止访问某些资源，返回空白页或者连接重置
+            3，修改请求或响应。更多的可能是修改响应的页面内容
+            4，记录统计。记录并统计请求的网址。
+            
+            修改Http响应的一般做法：
+            1，反向映射888端口到目标abc.com
+            2，abc.com页面响应时，所有http://abc.com/的连接都修改为http://IP:888
+            3，注意在内网的反向代理需要使用公网IP，而不是本机IP
+            4，子域名也可以修改，比如http://pic.abc.com/修改为http://IP:888/http_pic.abc.com/
+            </remarks>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpReverseProxy.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpReverseProxy.CreateSession(NewLife.Net.ISocketSession)">
+            <summary>创建会话</summary>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Proxy.HttpReverseProxy.Session">
+            <summary>Http反向代理会话</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpReverseProxy.Session.Request">
+            <summary>请求头部</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpReverseProxy.Session.Host">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.HttpReverseProxy.Session.RawHost">
+            <summary>属性说明</summary>
+        </member>
+        <member name="E:NewLife.Net.Proxy.HttpReverseProxy.Session.OnRequest">
+            <summary>请求时触发。</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpReverseProxy.Session.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到客户端发来的数据。子类可通过重载该方法来修改数据</summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.HttpReverseProxy.Session.WriteDebugLog(System.String,System.IO.Stream)">
+            <summary>写调试版日志</summary>
+            <param name="action"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.IProxy">
+            <summary>数据转发代理接口</summary>
+        </member>
+        <member name="T:NewLife.Net.Proxy.IProxySession">
+            <summary>代理会话接口。客户端的一次转发请求（或者Tcp连接），就是一个会话。转发的全部操作都在会话中完成。</summary>
+            <remarks>
+            一个会话应该包含两端，两个Socket，服务端和客户端。
+            客户端<see cref="P:NewLife.Net.INetSession.Session"/>发来的数据，在这里经过一系列过滤器后，转发给服务端<see cref="P:NewLife.Net.Proxy.IProxySession.RemoteServer"/>；
+            服务端<see cref="P:NewLife.Net.Proxy.IProxySession.RemoteServer"/>返回的数据，在这里经过过滤器后，转发给客户端<see cref="P:NewLife.Net.INetSession.Session"/>。
+            会话进行业务处理的过程中，可以通过多个SendRemote方法向远程服务端发送数据。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Proxy.IProxySession.Proxy">
+            <summary>代理对象</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.IProxySession.RemoteServer">
+            <summary>远程服务端。跟目标服务端通讯的那个Socket，其实是客户端TcpSession/UdpSession</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.IProxySession.RemoteServerUri">
+            <summary>服务端地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.IProxySession.ExchangeEmptyData">
+            <summary>是否中转空数据包。默认true</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.IProxySession.SendRemote(System.Byte[],System.Int32,System.Int32)">
+            <summary>发送数据</summary>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">位移</param>
+            <param name="size">写入字节数</param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.IProxySession.SendRemote(System.IO.Stream)">
+            <summary>发送数据流</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.IProxySession.SendRemote(System.String,System.Text.Encoding)">
+            <summary>发送字符串</summary>
+            <param name="msg"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.ProxySession`2">
+            <summary>代理会话</summary>
+            <typeparam name="TProxy">实际代理类型</typeparam>
+            <typeparam name="TProxySession">代理会话类型</typeparam>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession`2.Proxy">
+            <summary>代理对象</summary>
+        </member>
+        <member name="T:NewLife.Net.Proxy.ProxySession">
+            <summary>代理会话。客户端的一次转发请求（或者Tcp连接），就是一个会话。转发的全部操作都在会话中完成。</summary>
+            <remarks>
+            一个会话应该包含两端，两个Socket，服务端和客户端
+            客户端<see cref="P:NewLife.Net.INetSession.Session"/>发来的数据，在这里经过一系列过滤器后，转发给服务端<see cref="P:NewLife.Net.Proxy.ProxySession.RemoteServer"/>；
+            服务端<see cref="P:NewLife.Net.Proxy.ProxySession.RemoteServer"/>返回的数据，在这里经过过滤器后，转发给客户端<see cref="P:NewLife.Net.INetSession.Session"/>。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession.NewLife#Net#Proxy#IProxySession#Proxy">
+            <summary>代理对象</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession.RemoteServer">
+            <summary>远程服务端。跟目标服务端通讯的那个Socket，其实是客户端TcpSession/UdpServer</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession.RemoteServerUri">
+            <summary>服务端地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession.ExchangeEmptyData">
+            <summary>是否中转空数据包。默认true</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.#ctor">
+            <summary>实例化一个代理会话</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.OnDispose(System.Boolean)">
+            <summary>子类重载实现资源释放逻辑时必须首先调用基类方法</summary>
+            <param name="disposing">从Dispose调用（释放所有资源）还是析构函数调用（释放非托管资源）</param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.Start">
+            <summary>开始会话处理。</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.OnReceive(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到客户端发来的数据</summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.StartRemote(NewLife.Net.ReceivedEventArgs)">
+            <summary>开始远程连接</summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.CreateRemote(NewLife.Net.ReceivedEventArgs)">
+            <summary>为会话创建与远程服务器通讯的Socket。可以使用Socket池达到重用的目的。</summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.OnRemoteDispose(NewLife.Net.ISocketClient)">
+            <summary>远程连接断开时触发。默认销毁整个会话，子类可根据业务情况决定客户端与代理的链接是否重用。</summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.OnReceiveRemote(NewLife.Net.ReceivedEventArgs)">
+            <summary>收到远程服务器返回的数据</summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.SendRemote(System.Byte[],System.Int32,System.Int32)">
+            <summary>发送数据</summary>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">位移</param>
+            <param name="size">写入字节数</param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.SendRemote(System.IO.Stream)">
+            <summary>发送数据流</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.SendRemote(System.String,System.Text.Encoding)">
+            <summary>发送字符串</summary>
+            <param name="msg"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.OnError(System.Object,NewLife.ExceptionEventArgs)">
+            <summary></summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:NewLife.Net.Proxy.ProxySession.LogPrefix">
+            <summary>日志前缀</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.WriteDebugLog(System.String,System.Object[])">
+            <summary>写调试版日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.WriteDebugLog(System.String,System.IO.Stream)">
+            <summary>写调试版日志</summary>
+            <param name="action"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxySession.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Proxy.ProxyBase`1">
+            <summary>网络数据转发代理基类</summary>
+            <remarks>
+            网络代理分为本地服务器、客户端、远程服务器三种角色，本地服务器负责监听并转发客户端和远程服务器之间的所有数据。
+            </remarks>
+            <typeparam name="TProxySession">代理会话类型</typeparam>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxyBase`1.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxyBase`1.CreateSession(NewLife.Net.ISocketSession)">
+            <summary>创建会话</summary>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Proxy.ProxyBase`1.AddSession(NewLife.Net.INetSession)">
+            <summary>添加会话。子类可以在添加会话前对会话进行一些处理</summary>
+            <param name="session"></param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.NATProxy">
+            <summary>通用NAT代理。所有收到的数据，都转发到指定目标</summary>
+        </member>
+        <member name="P:NewLife.Net.Proxy.NATProxy.RemoteServer">
+            <summary>远程服务器地址</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.NATProxy.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.NATProxy.#ctor(System.String,System.Int32)">
+            <summary>实例化</summary>
+            <param name="hostname">目标服务器地址</param>
+            <param name="port">目标服务器端口</param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.NATProxy.#ctor(System.String,System.Int32,NewLife.Net.NetType)">
+            <summary>实例化</summary>
+            <param name="hostname">目标服务器地址</param>
+            <param name="port">目标服务器端口</param>
+            <param name="protocol">协议</param>
+        </member>
+        <member name="M:NewLife.Net.Proxy.NATProxy.OnStart">
+            <summary>开始</summary>
+        </member>
+        <member name="M:NewLife.Net.Proxy.NATProxy.AddSession(NewLife.Net.INetSession)">
+            <summary>添加会话。子类可以在添加会话前对会话进行一些处理</summary>
+            <param name="session"></param>
+        </member>
+        <member name="T:NewLife.Net.Proxy.NATSession">
+            <summary>NAT会话</summary>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpAttribute">
+            <summary>SDP 属性</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpAttribute.Name">
+            <summary>名称</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpAttribute.Value">
+            <summary>值</summary>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpAttribute.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="value">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpAttribute.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpConnection">
+            <summary>SDP Connection</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpConnection.NetType">
+            <summary>网络类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpConnection.AddressType">
+            <summary>地址类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpConnection.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpConnection.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="value">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpConnection.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpMediaDescription">
+            <summary>SDP 媒体描述</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.MediaType">
+            <summary>媒体类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Port">
+            <summary>端口</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.NumberOfPorts">
+            <summary>端口数</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Protocol">
+            <summary>协议。UDP;RTP/AVP;RTP/SAVP.</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.MediaFormats">
+            <summary>媒体格式</summary>
+            <remarks>
+            <code>
+            ; Media Formats: 
+            ; If the Transport Protocol is "RTP/AVP" or "RTP/SAVP" the &lt;fmt&gt; 
+            ; sub-fields contain RTP payload type numbers, for example: 
+            ; - for Audio: 0: PCMU, 4: G723, 8: PCMA, 18: G729 
+            ; - for Video: 31: H261, 32: MPV 
+            ; If the Transport Protocol is "udp" the &lt;fmt&gt; sub-fields 
+            ; must reference a MIME type 
+            </code>
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Information">
+            <summary>信息</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Connection">
+            <summary>连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Bandwidth">
+            <summary>带宽</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Attributes">
+            <summary>属性集合</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMediaDescription.Tags">
+            <summary>标签集合</summary>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpMediaDescription.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="value">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpMediaDescription.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpMessage">
+            <summary>会话描述协议</summary>
+            <remarks>
+            <a target="_blank" href="http://baike.baidu.com/view/875414.htm">会话描述协议</a>
+            
+            为会话通知、会话邀请和其它形式的多媒体会话初始化等目的提供了多媒体会话描述。
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Version">
+            <summary>版本</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Origin">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.SessionName">
+            <summary>会话名</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.SessionDescription">
+            <summary>会话描述</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Uri">
+            <summary>资源标识</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Connection">
+            <summary>连接</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Times">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.RepeatTimes">
+            <summary>会话重复次数</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.Attributes">
+            <summary>属性集合</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpMessage.MediaDescriptions">
+            <summary>媒体描述集合</summary>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpOrigin">
+            <summary>SDP Origin。RFC 4566 5.2</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.SessionID">
+            <summary>会话编号</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.SessionVersion">
+            <summary>会话版本。每次会话数据被修改时都递增该值</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.NetType">
+            <summary>网络类型。IN</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.AddressType">
+            <summary>地址类型。IP4，IP6</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpOrigin.UnicastAddress">
+            <summary>地址</summary>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpOrigin.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="value">Origin value.</param>
+            <returns>Returns parsed SDP Origin.</returns>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpOrigin.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Sdp.SdpTime">
+            <summary>SDP 时间</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpTime.StartTime">
+            <summary>开始时间。1900年以来的秒数</summary>
+        </member>
+        <member name="P:NewLife.Net.Sdp.SdpTime.StopTime">
+            <summary>停止时间。1900年以来的秒数</summary>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpTime.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="value">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Sdp.SdpTime.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPBind">
+            <summary>Bind操作由Bind命令和Bind_Resp应答组成。客户端首先发送Bind命令，服务器端收到Bind命令后，对命令发送方进行验证，然后返回Bind_Resp应答。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPBind.LoginType">
+            <summary>登录类型</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPBind.LoginName">
+            <summary>登录名</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPBind.LoginPassowrd">
+            <summary>登录密码</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPBind.Reserve">
+            <summary>保留</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPBind.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.LoginTypes">
+            <summary>Bind操作，登录类型。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.SpToSmg">
+            <summary>1：SP向SMG建立的连接，用于发送命令</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.SmgToSp">
+            <summary>2：SMG向SP建立的连接，用于发送命令</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.SmgToSmg">
+            <summary>3：SMG之间建立的连接，用于转发命令</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.SmgToGns">
+            <summary>4：SMG向GNS建立的连接，用于路由表的检索和维护</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.GnsToSmg">
+            <summary>5：GNS向SMG建立的连接，用于路由表的更新</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.GnsToGns">
+            <summary>6：主备GNS之间建立的连接，用于主备路由表的一致性</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.Test">
+            <summary>11：SP与SMG以及SMG之间建立的测试连接，用于跟踪测试</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.LoginTypes.Unknown">
+            <summary>其它：保留</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPClient">
+            <summary>SGIP客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.Client">
+            <summary>TCP客户端</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.IP">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.Port">
+            <summary>端口</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.SrcNodeSequence">
+            <summary>源节点</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.SystemID">
+            <summary>帐号名</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.Logined">
+            <summary>是否已登录</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.SPNumber">
+            <summary>SP的接入号码。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.CorpID">
+            <summary>企业代码。取值范围：0～99999。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPClient.ServiceType">
+            <summary>业务代码</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.Login">
+            <summary>登录。发送Bind指令，接收Bind_Resp响应</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.SendMessage(System.String,System.String)">
+            <summary>发信息</summary>
+            <param name="target">目标对象</param>
+            <param name="content"></param>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.DeliverMessage(System.String,System.String)">
+            <summary>传递信息</summary>
+            <param name="target">目标对象</param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.Logout">
+            <summary>退出</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.Send(NewLife.Net.SGIP.SGIPEntity)">
+            <summary>发送指令，返回响应</summary>
+            <param name="command">指令</param>
+            <returns>响应</returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.Read">
+            <summary>读命令</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPClient.Write(NewLife.Net.SGIP.SGIPEntity)">
+            <summary>写命令</summary>
+            <param name="cmd"></param>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPDeliver">
+            <summary>MO指令</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.UserNumber">
+            <summary>发送短消息的用户手机号，手机号码前加“86”国别标志</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.SPNumber">
+            <summary>SP的接入号码</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.TP_pid">
+            <summary>GSM协议类型。详细解释请参考GSM03.40中的9.2.3.9</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.TP_udhi">
+            <summary>GSM协议类型。详细解释请参考GSM03.40中的9.2.3.23,仅使用1位，右对齐</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.MessageCoding">
+            <summary>短消息的编码格式。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.MessageLength">
+            <summary>短消息的长度</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.MessageContent">
+            <summary>短消息的内容</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPDeliver.Reserve">
+            <summary>保留，扩展用</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPDeliver.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPMessageCodings">
+            <summary>短消息的编码格式。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.Ascii">
+            <summary>0：纯ASCII字符串</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.WriteCard">
+            <summary>3：写卡操作</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.Binary">
+            <summary>4：二进制编码</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.Ucs2">
+            <summary>8：UCS2编码</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.Gbk">
+            <summary>15: GBK编码</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPMessageCodings.Others">
+            <summary>其它参见GSM3.38第4节：SMS Data Coding Scheme</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPEntity">
+            <summary>SGIP命令实体基类</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPEntity.Command">
+            <summary>命令</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPEntity.SrcNodeSequence">
+            <summary>序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPEntity.DateSequence">
+            <summary>序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPEntity.MsgSequence">
+            <summary>序列号</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPEntity.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPEntity.#ctor(NewLife.Net.SGIP.SGIPCommands)">
+            <summary>实例化</summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPEntity.Read(System.IO.Stream)">
+            <summary>从流中读取对象</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPEntity.Write(System.IO.Stream)">
+            <summary>把对象写入流中</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPEntity.GetStream">
+            <summary>获取数据流</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPResponse">
+            <summary>响应</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPResponse.Result">
+            <summary>结果</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPResponse.Reserve">
+            <summary>保留</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPCommands">
+            <summary>指令枚举</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Bind">
+            <summary>绑定</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Bind_Resp">
+            <summary>绑定响应</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Unbind">
+            <summary>取消绑定</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Unbind_Resp">
+            <summary>取消绑定响应</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Submit">
+            <summary>提交</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Submit_Resp">
+            <summary>提交响应</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Deliver">
+            <summary>分发</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Deliver_Resp">
+            <summary>分发响应</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Report">
+            <summary>报告</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPCommands.Report_Resp">
+            <summary>报告响应</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPErrorCodes">
+            <summary>错误代码</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.Success">
+            <summary>无错误，命令正确接收</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.LoginError">
+            <summary>非法登录，如登录名、口令出错、登录名与口令不符等。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.Relogon">
+            <summary>重复登录，如在同一TCP/IP连接中连续两次以上请求登录。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.ConnectionFull">
+            <summary>连接过多，指单个节点要求同时建立的连接数过多。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.ErrorLoginType">
+            <summary>登录类型错，指bind命令中的logintype字段出错。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.ParameterError">
+            <summary>参数格式错，指命令中参数值与参数类型不符或与协议规定的范围不符。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.TelnumberError">
+            <summary>非法手机号码，协议中所有手机号码字段出现非86130号码或手机号码前未加“86”时都应报错。</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.MsgIDError">
+            <summary>消息ID错</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.PackageLengthError">
+            <summary>信息长度错</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.SequenceError">
+            <summary>非法序列号，包括序列号重复、序列号格式错误等</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.GnsOperationError">
+            <summary>非法操作GNS</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.NodeBusy">
+            <summary>节点忙，指本节点存储队列满或其他原因，暂时不能提供服务的情况</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.NodeCanNotReachable">
+            <summary>目的地址不可达，指路由表存在路由且消息路由正确但被路由的节点暂时不能提供服务的情况</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.RouteError">
+            <summary>路由错，指路由表存在路由但消息路由出错的情况，如转错SMG等</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.RoutNodeNotExisted">
+            <summary>路由不存在，指消息路由的节点在路由表中不存在</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.FeeNumberError">
+            <summary>计费号码无效，鉴权不成功时反馈的错误信息</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.UserCanNotReachable">
+            <summary>用户不能通信（如不在服务区、未开机等情况）</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.HandsetFull">
+            <summary>手机内存不足</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.HandsetCanNotRecvSms">
+            <summary>手机不支持短消息</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.HandsetReturnError">
+            <summary>手机接收短消息出现错误</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.UnknownUser">
+            <summary>不知道的用户</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.NoDevice">
+            <summary>不提供此功能</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.InvalidateDevice">
+            <summary>非法设备</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.SystemError">
+            <summary>系统失败（一般指系统消息队列满）</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.FullSequence">
+            <summary>超过流量限制，指发送方在一秒内的流量已经达到限制，拒绝发送</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPErrorCodes.OtherError">
+            <summary>未知错误</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPReport">
+            <summary>Report命令用于向SP发送一条先前的Submit命令的当前状态，或者用于向前转SMG发送一条先前的Deliver命令的当前状态。Report命令的接收方需要向发送方返回Report_Resp命令</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.SubmitSequenceNumber1">
+            <summary>该命令所涉及的Submit或deliver命令的序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.SubmitSequenceNumber2">
+            <summary>该命令所涉及的Submit或deliver命令的序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.SubmitSequenceNumber3">
+            <summary>该命令所涉及的Submit或deliver命令的序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.ReportType">
+            <summary>Report命令类型</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.UserNumber">
+            <summary>接收短消息的手机号，手机号码前加“86”国别标志</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.State">
+            <summary>该命令所涉及的短消息的当前执行状态</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.ErrorCode">
+            <summary>当State=2时为错误码值，否则为0</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPReport.Reserve">
+            <summary>保留，扩展用</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPReport.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPReportTypes">
+            <summary>Report命令类型</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPReportTypes.Submit">
+            <summary>0：对先前一条Submit命令的状态报告</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPReportTypes.Deliver">
+            <summary>1：对先前一条前转Deliver命令的状态报告</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPReportStates">
+            <summary>该命令所涉及的短消息的当前执行状态</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPReportStates.Success">
+            <summary>0：发送成功</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPReportStates.Accepted">
+            <summary>1：等待发送</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SGIPReportStates.Error">
+            <summary>2：发送失败</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPServer">
+            <summary>SGIP服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPServer.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPSubmit">
+            <summary>
+            在SP和SMG的通信中，SP用Submit命令向SMG提交MT短消息，发送到用户的手机中。SMG接收到Submit命令，会返回Submit_Resp应答。SMG根据Submit命令中的付费号码，判断出该命令是否应从本地SMSC发送，如果属于本地发送，则直接发送到相应的SMSC，否则路由至相应的SMG。
+            在SMG和SMG的通信中，Submit命令用于SMG客户端向服务器端路由从SP收到的MT短消息。服务器端接收到Submit命令后，再发送到与之相连的目的SMSC。
+            </summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.SPNumber">
+            <summary>SP的接入号码</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.ChargeNumber">
+            <summary>付费号码，手机号码前加“86”国别标志；当且仅当群发且对用户收费时为空；如果为空，则该条短消息产生的费用由UserNumber代表的用户支付；如果为全零字符串“000000000000000000000”，表示该条短消息产生的费用由SP支付。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.UserCount">
+            <summary>接收短消息的手机数量，取值范围1至100</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.UserNumber">
+            <summary>接收该短消息的手机号，该字段重复UserCount指定的次数，手机号码前加“86”国别标志</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.CorpId">
+            <summary>企业代码，取值范围0-99999</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.ServiceType">
+            <summary>业务代码，由SP定义</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.FeeType">
+            <summary>计费类型</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.FeeValue">
+            <summary>取值范围0-99999，该条短消息的收费值，单位为分，由SP定义 对于包月制收费的用户，该值为月租费的值</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.GivenValue">
+            <summary>取值范围0-99999，赠送用户的话费，单位为分，由SP定义，特指由SP向用户发送广告时的赠送话费</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.AgentFlag">
+            <summary>代收费标志，0：应收；1：实收</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.MorelatetoMTFlag">
+            <summary>引起MT消息的原因0-MO点播引起的第一条MT消息；1-MO点播引起的非第一条MT消息；2-非MO点播引起的MT消息；3-系统反馈引起的MT消息。</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.Priority">
+            <summary>优先级0-9从低到高，默认为0</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.ExpireTime">
+            <summary>短消息寿命的终止时间，如果为空，表示使用短消息中心的缺省值。时间内容为16个字符，格式为”yymmddhhmmsstnnp” ，其中“tnnp”取固定值“032+”，即默认系统为北京时间</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.ScheduleTime">
+            <summary>短消息定时发送的时间，如果为空，表示立刻发送该短消息。时间内容为16个字符，格式为“yymmddhhmmsstnnp” ，其中“tnnp”取固定值“032+”，即默认系统为北京时间</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.ReportFlag">
+            <summary>状态报告标记0-该条消息只有最后出错时要返回状态报告1-该条消息无论最后是否成功都要返回状态报告2-该条消息不需要返回状态报告3-该条消息仅携带包月计费信息，不下发给用户，要返回状态报告其它-保留缺省设置为0</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.TP_pid">
+            <summary>GSM协议类型。详细解释请参考GSM03.40中的9.2.3.9</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.TP_udhi">
+            <summary>GSM协议类型。详细解释请参考GSM03.40中的9.2.3.23,仅使用1位，右对齐</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.MessageCoding">
+            <summary>短消息的编码格式。0：纯ASCII字符串3：写卡操作4：二进制编码8：UCS2编码15: GBK编码其它参见GSM3.38第4节：SMS Data Coding Scheme</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.MessageType">
+            <summary>信息类型：0-短消息信息其它：待定</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.MessageLength">
+            <summary>短消息的长度</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.MessageContent">
+            <summary>短消息的内容</summary>
+        </member>
+        <member name="P:NewLife.Net.SGIP.SGIPSubmit.Reserve">
+            <summary>保留，扩展用</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPSubmit.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SubmitAgentFlags">
+            <summary>代收费标志，0：应收；1：实收</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitAgentFlags.SouldIncome">
+            <summary>0：应收</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitAgentFlags.RealIncome">
+            <summary>1：实收</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SubmitReportFlags">
+            <summary>状态报告标记</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitReportFlags.ErrorReport">
+            <summary>0-该条消息只有最后出错时要返回状态报告</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitReportFlags.Always">
+            <summary>1-该条消息无论最后是否成功都要返回状态报告</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitReportFlags.NoReport">
+            <summary>2-该条消息不需要返回状态报告</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitReportFlags.MonthReport">
+            <summary>3-该条消息仅携带包月计费信息，不下发给用户，要返回状态报告</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SubmitMorelatetoMTFlags">
+            <summary>引起MT消息的原因</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitMorelatetoMTFlags.VoteFirst">
+            <summary>0-MO点播引起的第一条MT消息；</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitMorelatetoMTFlags.VoteNonFirst">
+            <summary>1-MO点播引起的非第一条MT消息；</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitMorelatetoMTFlags.NormalFirst">
+            <summary>2-非MO点播引起的MT消息；</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.SubmitMorelatetoMTFlags.NormalNonFirst">
+            <summary>3-系统反馈引起的MT消息。</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.FeeTypes">
+            <summary>计费类别定义</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.FeeTypes.FreeSend">
+            <summary>0	“短消息类型”为“发送”，对“计费用户号码”不计信息费，此类话单仅用于核减SP对称的信道费</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.FeeTypes.Free">
+            <summary>1	对“计费用户号码”免费</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.FeeTypes.RowNumFee">
+            <summary>2	对“计费用户号码”按条计信息费</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.FeeTypes.MonthFee">
+            <summary>3	对“计费用户号码”按包月收取信息费</summary>
+        </member>
+        <member name="F:NewLife.Net.SGIP.FeeTypes.SpFee">
+            <summary>4	对“计费用户号码”的收费是由SP实现</summary>
+        </member>
+        <member name="T:NewLife.Net.SGIP.SGIPUnbind">
+            <summary>Unbind操作由Unbind命令和Unbind_Resp应答组成。通信连接建立以后，客户端如果要停止通信，需要发送Unbind命令；服务器端收到Unbind命令后，向客户端发送Unbind_Resp相应，然后双方断开连接</summary>
+        </member>
+        <member name="M:NewLife.Net.SGIP.SGIPUnbind.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.Sip">
+            <summary></summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipACValue">
+            <summary>ac-value</summary>
+            <remarks>
+            <code>
+            RFC 3841 Syntax:
+                ac-value       = "*" *(SEMI ac-params)
+                ac-params      = feature-param / req-param / explicit-param / generic-param
+                                 ;;feature param from RFC 3840
+                                 ;;generic-param from RFC 3261
+                req-param      = "require"
+                explicit-param = "explicit"
+            </code>
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipACValue.Require">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipACValue.Explicit">
+            <summary>属性说明</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipAddressParam">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipAddressParam.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipAlertParam">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipAlertParam.Uri">
+            <summary>标识</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipContactParam">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContactParam.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContactParam.IsStarContact">
+            <summary>是否*联系人</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContactParam.QValue">
+            <summary>qvalue</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContactParam.Expires">
+            <summary>expires</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipContentDisposition">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContentDisposition.DispositionType">
+            <summary>DispositionType</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipContentDisposition.Handling">
+            <summary>handling</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipEncoding">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipEncoding.ContentEncoding">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipEncoding.QValue">
+            <summary>qvalue</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipErrorUri">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipErrorUri.Uri">
+            <summary>属性说明</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipEvent">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipEvent.EventType">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipEvent.ID">
+            <summary>id</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipFrom">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipFrom.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipFrom.Tag">
+            <summary>tag</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipHiEntry">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipHiEntry.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipHiEntry.Index">
+            <summary>index</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipIdentityInfo">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipIdentityInfo.Uri">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipIdentityInfo.Alg">
+            <summary>alg</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipInfo">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipInfo.Uri">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipInfo.Purpose">
+            <summary>属性说明</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipJoin">
+            <summary></summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipNameAddress">
+            <summary></summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipNameAddress.DisplayName">
+            <summary>显示名</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipNameAddress.Uri">
+            <summary>唯一标识</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipValue">
+            <summary>Sip实体基类</summary>
+        </member>
+        <member name="T:NewLife.Net.Sip.Message.SipValueWithParams">
+            <summary>带参数Sip实体基类</summary>
+        </member>
+        <member name="P:NewLife.Net.Sip.Message.SipValueWithParams.Parameters">
+            <summary>参数集合</summary>
+        </member>
+        <member name="T:NewLife.Net.Smtp.RelayServer">
+            <summary>Relay服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Smtp.RelayServer.#ctor">
+            <summary>实例化一个Relay服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Smtp.RelaySession">
+            <summary>Relay会话</summary>
+        </member>
+        <member name="T:NewLife.Net.Smtp.SmtpClient">
+            <summary>Smtp客户端</summary>
+        </member>
+        <member name="T:NewLife.Net.Smtp.SmtpServer">
+            <summary>Smtp服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Smtp.SmtpServer.#ctor">
+            <summary>实例化一个Smtp服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Smtp.SmtpSession">
+            <summary>Smtp会话</summary>
+        </member>
+        <member name="T:NewLife.Net.Sockets.Netbase">
+            <summary>网络基类，提供资源释放和日志输出的统一处理</summary>
+        </member>
+        <member name="M:NewLife.Net.Sockets.Netbase.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="P:NewLife.Net.Sockets.Netbase.Log">
+            <summary>日志提供者</summary>
+        </member>
+        <member name="M:NewLife.Net.Sockets.Netbase.WriteLog(System.String,System.Object[])">
+            <summary>写日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:NewLife.Net.Sockets.Netbase.WriteDebugLog(System.String,System.Object[])">
+            <summary>写调试日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressClient.EndPoint">
+            <summary>远程地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressClient.Buffer">
+            <summary>数据缓冲区</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressClient.Interval">
+            <summary>发送间隔</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressClient.Times">
+            <summary>发送次数</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStressClient.StartSend">
+            <summary>开始发送</summary>
+        </member>
+        <member name="T:NewLife.Net.Stress.TcpStressConfig">
+            <summary>Tcp压力测试配置文件</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Address">
+            <summary>测试地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Port">
+            <summary>测试端口</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Connections">
+            <summary>连接数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Interval">
+            <summary>连接间隔，单位毫秒</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Data">
+            <summary>发送的数据，十六进制数据使用0x开头</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.UseLength">
+            <summary>使用前缀长度</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.SendInterval">
+            <summary>发送数据间隔，单位毫秒</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStressConfig.Times">
+            <summary>每个连接发送数据次数</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStressConfig.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStressConfig.Show">
+            <summary>显示参数</summary>
+        </member>
+        <member name="T:NewLife.Net.Stress.TcpStress">
+            <summary>Tcp压力测试</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.Connections">
+            <summary>连接数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.Messages">
+            <summary>消息数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.Bytes">
+            <summary>字节数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.MessagesPerSecond">
+            <summary>每秒消息数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.BytesPerSecond">
+            <summary>每秒字节数</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.MaxMessages">
+            <summary>最大消息速度</summary>
+        </member>
+        <member name="P:NewLife.Net.Stress.TcpStress.MaxBytes">
+            <summary>最大字节速度</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStress.OnDispose(System.Boolean)">
+            <summary>销毁</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStress.Main">
+            <summary>入口方法</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStress.Init">
+            <summary>初始化工作</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStress.Start">
+            <summary>开始</summary>
+        </member>
+        <member name="M:NewLife.Net.Stress.TcpStress.Stop">
+            <summary>停止</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.Type">
+            <summary>类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.Length">
+            <summary>属性说明</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.Data">
+            <summary>数据</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.EndPoint">
+            <summary>网络节点</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.Str">
+            <summary>字符串</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunAttribute.Int">
+            <summary>整型</summary>
+        </member>
+        <member name="T:NewLife.Net.Stun.AttributeType">
+            <summary>属性类型</summary>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunClient">
+            <summary>Stun客户端。Simple Traversal of UDP over NATs，NAT 的UDP简单穿越。RFC 3489</summary>
+            <remarks>
+            <a target="_blank" href="http://baike.baidu.com/view/884586.htm">STUN</a>
+            
+            国内STUN服务器：220.181.126.73、220.181.126.74，位于北京电信，但不清楚是哪家公司
+            </remarks>
+            <example>
+            <code>
+            var result = new StunClient().Query();
+            if(result.Type != StunNetType.UdpBlocked){
+                
+            }
+            else{
+                var publicEP = result.Public;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.Servers">
+            <summary>Stun服务器</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.Socket">
+            <summary>套接字</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.Socket2">
+            <summary>用于测试更换本地套接字的第二套接字</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.ProtocolType">
+            <summary>协议，默认Udp</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.Port">
+            <summary>本地端口</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunClient.Timeout">
+            <summary>超时时间，默认2000ms</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.#ctor(NewLife.Net.NetType)">
+            <summary>在指定协议上执行查询</summary>
+            <param name="protocol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.#ctor(NewLife.Net.NetType,System.Int32)">
+            <summary>在指定协议和本地端口上执行查询</summary>
+            <param name="protocol"></param>
+            <param name="port"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.#ctor(NewLife.Net.ISocket)">
+            <summary>在指定套接字上执行查询</summary>
+            <param name="socket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.Query">
+            <summary>按服务器列表执行查询</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.QueryWithServer(System.Net.IPAddress,System.Int32)">
+            <summary>在指定服务器上执行查询</summary>
+            <param name="address"></param>
+            <param name="port"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.GetPublic">
+            <summary>获取公网地址</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunClient.Query(NewLife.Net.Stun.StunMessage,System.Net.IPEndPoint)">
+            <summary>查询</summary>
+            <param name="request"></param>
+            <param name="remoteEndPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunMessage">
+            <summary>Stun消息</summary>
+            <remarks>未测试，可能没有考虑字节序</remarks>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.Type">
+            <summary>消息类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.Length">
+            <summary>消息长度</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.TransactionID">
+            <summary>会话编号</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.Atts">
+            <summary>属性集合</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.MappedAddress">
+            <summary>映射地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ResponseAddress">
+            <summary>响应地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ChangeIP">
+            <summary>请求改变</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ChangePort">
+            <summary>请求改变</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.SourceAddress">
+            <summary>源地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ChangedAddress">
+            <summary>改变后的地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ErrCode">
+            <summary>错误</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ErrReason">
+            <summary>错误</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ReflectedFrom">
+            <summary>服务端从客户端拿到的地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunMessage.ServerName">
+            <summary>服务器名称</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.#ctor">
+            <summary>实例化一个Stun消息</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.ResetTransactionID">
+            <summary>重置会话ID</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.Read(System.IO.Stream)">
+            <summary>从流中读取消息</summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.Write(System.IO.Stream)">
+            <summary>把消息写入流中</summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.GetStream">
+            <summary>获取消息的数据流</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.ToArray">
+            <summary>获取消息的字节码</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunMessage.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunMessageType">
+            <summary>STUN消息类型</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.BindingRequest">
+            <summary>绑定请求</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.BindingResponse">
+            <summary>绑定响应</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.BindingErrorResponse">
+            <summary>错误响应</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.SharedSecretRequest">
+            <summary>安全请求</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.SharedSecretResponse">
+            <summary>安全响应</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunMessageType.SharedSecretErrorResponse">
+            <summary>安全错误响应</summary>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunNetType">
+            <summary>UDP网络类型</summary>
+            <remarks>
+            <a target="_blank" href="http://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2">网络地址转换【维基百科】</a>
+            </remarks>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.Blocked">
+            <summary>被禁止，或无法连接STUN服务器</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.OpenInternet">
+            <summary>公网地址，没有NAT和防火墙</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.SymmetricUdpFirewall">
+            <summary>公网地址，没有NAT，对称UDP防火墙</summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.FullCone">
+            <summary>
+            一对一完全圆锥NAT。IP和端口均可变。
+            一旦一个内部地址(iAddr:port1)映射到外部地址(eAddr:port2),所有发自iAddr:port1的包都经由eAddr:port2向外发送.
+            任意外部主机都能通过给eAddr:port2发包到达iAddr:port1
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.AddressRestrictedCone">
+            <summary>
+            地址受限圆锥NAT。IP必须固定，端口可变。
+            一旦一个内部地址(iAddr:port1)映射到外部地址(eAddr:port2),所有发自iAddr:port1的包都经由eAddr:port2向外发送.
+            任意外部主机(hostAddr:any)都能通过给eAddr:port2发包到达iAddr:port1的前提是：iAddr:port1之前发送过包到hostAddr:any. 
+            "any"也就是说端口不受限制
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.PortRestrictedCone">
+            <summary>
+            端口受限圆锥NAT。对方IP和端口都必须固定
+            一旦一个内部地址(iAddr:port1)映射到外部地址(eAddr:port2),所有发自iAddr:port1的包都经由eAddr:port2向外发送.
+            一个外部主机(hostAddr:port3)能够发包到达iAddr:port1的前提是：iAddr:port1之前发送过包到hostAddr:port3.
+            </summary>
+        </member>
+        <member name="F:NewLife.Net.Stun.StunNetType.Symmetric">
+            <summary>
+            对称NAT。同一内部地址端口，连接不同外网时，映射的公网地址和端口均不同。
+            每一个来自相同内部IP与port的请求到一个特定目的地的IP地址和端口，映射到一个独特的外部来源的IP地址和端口。
+            同一个内部主机发出一个信息包到不同的目的端，不同的映射使用
+            只有曾经收到过内部主机封包的外部主机，才能够把封包发回来
+            </summary>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunResult">
+            <summary>Stun结果</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunResult.Type">
+            <summary>类型</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunResult.Public">
+            <summary>公共地址</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunResult.#ctor(NewLife.Net.Stun.StunNetType,System.Net.IPEndPoint)">
+            <summary>实例化Stun结果</summary>
+            <param name="type">类型</param>
+            <param name="ep"></param>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunResult.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.Stun.StunServer">
+            <summary>Stun服务端。Simple Traversal of UDP over NATs，NAT 的UDP简单穿越。RFC 3489</summary>
+            <remarks>
+            <a target="_blank" href="http://baike.baidu.com/view/884586.htm">STUN</a>
+            </remarks>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunServer.Public">
+            <summary>我的公网地址。因为当前服务器可能在内网中，需要调用StunClient拿公网地址</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunServer.Partner">
+            <summary>伙伴地址。需要改变地址时，向该伙伴地址发送信息</summary>
+        </member>
+        <member name="P:NewLife.Net.Stun.StunServer.Port2">
+            <summary>第二端口</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunServer.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunServer.EnsureCreateServer">
+            <summary>确保建立服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunServer.OnReceive(NewLife.Net.INetSession,System.IO.Stream)">
+            <summary>接收到数据时</summary>
+            <param name="session"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:NewLife.Net.Stun.StunServer.OnBind(NewLife.Net.Stun.StunMessage,NewLife.Net.ISocketSession)">
+            <summary>绑定</summary>
+            <param name="request"></param>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPClient.Udp">
+            <summary>UDP客户端</summary>
+        </member>
+        <member name="T:NewLife.Net.TDP.TDPFlags">
+            <summary>TDP标记</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.FIN">
+            <summary>发端完成发送任务。</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.SYN">
+            <summary>同步序号用来发起一个连接。</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.RST">
+            <summary>重建连接。</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.PSH">
+            <summary>接收方应该尽快将这个报文段交给应用层。</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.ACK">
+            <summary>确认序号有效。</summary>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPFlags.LIV">
+            <summary>连接保活标志，用于表示TDP 连接通路存活状态。</summary>
+        </member>
+        <member name="T:NewLife.Net.TDP.TDPPacket">
+            <summary>TDP协议包</summary>
+            <remarks>
+            TDP，在UDP上实现TCP。
+            </remarks>
+        </member>
+        <member name="F:NewLife.Net.TDP.TDPPacket._Data">
+            <summary>包括4位首部长度，保留6位，还有6位标志位</summary>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPPacket.Length">
+            <summary>头部长度</summary>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPPacket.Flag">
+            <summary>标记</summary>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPPacket.WindowSize">
+            <summary>16位窗口大小</summary>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPPacket.SequenceNumber">
+            <summary>序列号</summary>
+        </member>
+        <member name="P:NewLife.Net.TDP.TDPPacket.AckNumber">
+            <summary>确认序列号</summary>
+        </member>
+        <member name="T:NewLife.Net.Telnet.TelnetClient">
+            <summary>Telnet客户端</summary>
+        </member>
+        <member name="T:NewLife.Net.Telnet.TelnetServer">
+            <summary>Telnet服务器</summary>
+        </member>
+        <member name="M:NewLife.Net.Telnet.TelnetServer.#ctor">
+            <summary>实例化一个Telnet服务器</summary>
+        </member>
+        <member name="T:NewLife.Net.Telnet.TelnetSession">
+            <summary>Telnet会话</summary>
+        </member>
+        <member name="T:NewLife.Net.UPnP.Device">
+            <summary>设备</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.deviceType">
+            <summary>设备类型</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.presentationURL">
+            <summary>管理网址</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.friendlyName">
+            <summary>对于用户的简短描述</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.manufacturer">
+            <summary>生产厂家</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.manufacturerURL">
+            <summary>制造商的网址</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.modelDescription">
+            <summary>描述</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.modelName">
+            <summary>产品名称</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.modelNumber">
+            <summary>产品型号</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.UDN">
+            <summary>唯一设备名称</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.UPC">
+            <summary>通用产品编码缩写</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.serviceList">
+            <summary>服务项目</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Device.deviceList">
+            <summary>设备 仅当根设备带有嵌入式设备时要求</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Device.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Device.GetService(System.String)">
+            <summary>获取指定设备指定类型的服务</summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Device.GetWANIPService">
+            <summary>取得广域网IP连接设备</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.Envelope">
+            <summary>端口映射结构</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Envelope.Body">
+            <summary>属性说明</summary>
+        </member>
+        <member name="T:NewLife.Net.UPnP.Envelope.EnvelopeBody">
+            <summary>信封主体</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Envelope.EnvelopeBody.Xml">
+            <summary>Xml文档</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Envelope.EnvelopeBody.Fault">
+            <summary>失败</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Envelope.EnvelopeBody.GetSchema">
+            <summary>获取架构</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Envelope.EnvelopeBody.ReadXml(System.Xml.XmlReader)">
+            <summary>读取Xml</summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Envelope.EnvelopeBody.WriteXml(System.Xml.XmlWriter)">
+            <summary>写入Xml</summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Envelope.EnvelopeBody.ThrowException">
+            <summary>抛出异常</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.InternetGatewayDevice">
+            <summary>因特网网关设备</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.InternetGatewayDevice.specVersion">
+            <summary>UPnP 设备架构版本</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.InternetGatewayDevice.URLBase">
+            <summary>URL</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.InternetGatewayDevice.device">
+            <summary>设备</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.InternetGatewayDevice.ServerHost">
+            <summary>UPNP设备IP</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.InternetGatewayDevice.ServerPort">
+            <summary>UPNP设备端口</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.GetHOSTAndPort">
+            <summary>分析URLBase 并赋值HOST和Port</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.Add(System.String,System.Int32,System.String,System.Int32,System.String,System.Int32,System.String,System.Int32)">
+            <summary>添加映射端口</summary>
+            <param name="remoteHost">远程主机</param>
+            <param name="externalPort">外部端口</param>
+            <param name="protocol">TCP或UDP</param>
+            <param name="internalPort">内部端口</param>
+            <param name="internalClient">本地IP地址</param>
+            <param name="enabled">是否启用[0,1]</param>
+            <param name="description">端口映射的描述</param>
+            <param name="duration">映射的持续时间，用0表示永久</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.Add(System.String,System.Int32,System.String,System.String)">
+            <summary>添加映射端口</summary>
+            <param name="host">本地主机</param>
+            <param name="port">端口（内外一致）</param>
+            <param name="protocol">协议</param>
+            <param name="description">描述</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.Delete(System.String,System.Int32,System.String)">
+            <summary>删除端口映射</summary>
+            <param name="remoteHost">远程主机</param>
+            <param name="externalPort">外部端口</param>
+            <param name="protocol">TCP或UDP</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.GetMapByPortAndProtocol(System.String,System.Int32,System.String)">
+            <summary>获取指定设备的端口映射信息</summary>
+            <param name="remoteHost">远程主机</param>
+            <param name="externalPort">外部端口</param>
+            <param name="protocol">TCP/UDP</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.GetMapByIndex(System.Int32)">
+            <summary>获取指定设备的端口映射信息</summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.GetMapByIndexAll">
+            <summary>获取指定设备的所有端口映射信息</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.Request``1(NewLife.Net.UPnP.UPnPAction)">
+            <summary>向设备发送指令</summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="F:NewLife.Net.UPnP.InternetGatewayDevice.SOAP_HEADER">
+            <summary>SOAP头部</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.InternetGatewayDevice.SOAPRequest(System.Uri,System.String,System.String)">
+            <summary>发送SOAP请求，发送xml，返回xml</summary>
+            <param name="uri"></param>
+            <param name="action"></param>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.PortMappingEntryRequest">
+            <summary>端口映射实体</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntryRequest.NewPortMappingIndex">
+            <summary>索引</summary>
+        </member>
+        <member name="T:NewLife.Net.UPnP.PortMappingEntry">
+            <summary>端口映射实体</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.RemoteHost">
+            <summary>远程主机</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.ExternalPort">
+            <summary>外部端口</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.Protocol">
+            <summary>TCP/UDP</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.InternalPort">
+            <summary>内部端口</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.InternalClient">
+            <summary>主机IP</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.Enabled">
+            <summary>是否启用</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.Description">
+            <summary>描述</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.PortMappingEntry.LeaseDuration">
+            <summary>有效期</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.PortMappingEntry.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.Service">
+            <summary>服务项</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Service.serviceType">
+            <summary>UPnP 服务类型。不得包含散列符</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Service.serviceId">
+            <summary>服务标识符</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Service.controlURL">
+            <summary>控制网址</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Service.eventSubURL">
+            <summary>事件的URL</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.Service.SCPDURL">
+            <summary>服务描述的URL</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.Service.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.SpecVersion">
+            <summary>SpecVersion</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.SpecVersion.major">
+            <summary>UPnP 设备架构主版本</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.SpecVersion.minor">
+            <summary>UPnP 设备架构副版本</summary>
+        </member>
+        <member name="T:NewLife.Net.UPnP.UPnPAction`1">
+            <summary>UPnP操作</summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPAction`1.FromXml(System.String)">
+            <summary>XML反序列化为实体</summary>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.UPnPAction">
+            <summary>UPnP操作</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.UPnPAction.Name">
+            <summary>名称</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPAction.ToXml(System.String)">
+            <summary>序列化实体为Xml</summary>
+            <param name="xmlns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPAction.ToSoap(System.String)">
+            <summary>序列化实体为Soap</summary>
+            <param name="xmlns"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.UPnP.UPnPClient">
+            <summary>通用即插即用协议客户端</summary>
+            <remarks>
+            UPnP 是各种各样的智能设备、无线设备和个人电脑等实现遍布全球的对等网络连接（P2P）的结构。UPnP 是一种分布式的，开放的网络架构。UPnP 是独立的媒介。
+            
+            <a target="_blank" href="http://baike.baidu.com/view/27925.htm">UPnP</a>
+            </remarks>
+            <example>
+            <code>
+            UPnPClient client = new UPnPClient();
+            client.OnNewDevice += new EventHandler&lt;NewLife.EventArgs&lt;InternetGatewayDevice, bool&gt;&gt;(client_OnNewDevice);
+            client.StartDiscover();
+            
+            static void client_OnNewDevice(object sender, EventArgs&lt;InternetGatewayDevice, bool&gt; e)
+            {
+                Console.WriteLine("{0}{1}", e.Arg1, e.Arg2 ? " [缓存]" : "");
+                if (e.Arg2) return;
+            
+                foreach (var item in e.Arg1.GetMapByIndexAll())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:NewLife.Net.UPnP.UPnPClient.Udp">
+            <summary>Udp客户端，用于发现网关设备</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.UPnPClient.Gateways">
+            <summary>网关设备</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPClient.OnDispose(System.Boolean)">
+            <summary>释放资源</summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPClient.StartDiscover">
+            <summary>开始</summary>
+        </member>
+        <member name="E:NewLife.Net.UPnP.UPnPClient.OnNewDevice">
+            <summary>发现新设备时触发。参数（设备，是否来自缓存）</summary>
+        </member>
+        <member name="M:NewLife.Net.UPnP.UPnPClient.CheckCacheGateway">
+            <summary>检查缓存的网关</summary>
+        </member>
+        <member name="P:NewLife.Net.UPnP.UPnPClient.CacheGateway">
+            <summary>是否缓存网关。缓存网关可以加速UPnP的发现过程</summary>
+        </member>
+    </members>
+</doc>
