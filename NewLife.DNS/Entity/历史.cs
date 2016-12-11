@@ -14,6 +14,7 @@ namespace NewLife.DNS.Entity
     [Description("历史")]
     [BindIndex("IX_History_Name", false, "Name")]
     [BindIndex("IX_History_Type", false, "Type")]
+    [BindIndex("IX_History_UserIP", false, "UserIP")]
     [BindTable("History", Description = "历史", ConnName = "History", DbType = DatabaseType.SqlServer)]
     public partial class History : IHistory
     {
@@ -58,8 +59,8 @@ namespace NewLife.DNS.Entity
         /// <summary>地址</summary>
         [DisplayName("地址")]
         [Description("地址")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(4, "Address", "地址", null, "nvarchar(200)", 0, 0, true)]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(4, "Address", "地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Address
         {
             get { return _Address; }
@@ -70,8 +71,8 @@ namespace NewLife.DNS.Entity
         /// <summary>用户地址</summary>
         [DisplayName("用户地址")]
         [Description("用户地址")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(5, "UserIP", "用户地址", null, "nvarchar(200)", 0, 0, true)]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(5, "UserIP", "用户地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UserIP
         {
             get { return _UserIP; }
@@ -82,7 +83,7 @@ namespace NewLife.DNS.Entity
         /// <summary>协议</summary>
         [DisplayName("协议")]
         [Description("协议")]
-        [DataObjectField(false, false, true, 200)]
+        [DataObjectField(false, false, true, 10)]
         [BindColumn(6, "Protocol", "协议", null, "int", 10, 0, false)]
         public virtual Int32 Protocol
         {

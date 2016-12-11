@@ -5,11 +5,14 @@
  * 版权：版权所有 (C) 新生命开发团队 2012
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Sockets;
 using NewLife.Net;
 using NewLife.Web;
 using XCode;
+using XCode.Cache;
 
 namespace NewLife.DNS.Entity
 {
@@ -24,6 +27,13 @@ namespace NewLife.DNS.Entity
         static History()
         {
             Meta.Table.DataTable.InsertOnly = true;
+
+            var fact = Meta.Factory;
+            Helper.CheckHistoryDatabase(fact, DateTime.Now, false);
+
+            TypeCache.ConnName = fact.ConnName;
+            NameCache.ConnName = fact.ConnName;
+            UserCache.ConnName = fact.ConnName;
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -76,8 +86,7 @@ namespace NewLife.DNS.Entity
         #endregion
 
         #region 高级查询
-        [DataObjectMethod(DataObjectMethodType.Select, true)]
-        public static EntityList<History> Search(Int32 type, String name, String address, DateTime start, DateTime end, String key, Pager p)
+        public static EntityList<History> Search(Int32 type, String name, String user, DateTime start, DateTime end, String key, Pager p)
         {
             var dt = DateTime.Now;
             if (start > DateTime.MinValue)
@@ -90,7 +99,7 @@ namespace NewLife.DNS.Entity
 
             if (type > 0) exp &= _.Type == type;
             if (!name.IsNullOrWhiteSpace()) exp &= _.Name == name;
-            if (!address.IsNullOrWhiteSpace()) exp &= _.Address == address;
+            if (!user.IsNullOrWhiteSpace()) exp &= _.UserIP == user;
 
             // 因为分库存放，如果起始时间是1日，则忽略该条件
             if (start > DateTime.MinValue && start.Day > 1) exp &= _.CreateTime >= start;
@@ -101,6 +110,46 @@ namespace NewLife.DNS.Entity
         #endregion
 
         #region 扩展操作
+        /// <summary>类型实体缓存，异步，缓存10分钟</summary>
+        static FieldCache<History> TypeCache = new FieldCache<History>(_.Type);
+
+        /// <summary>获取所有类型名称</summary>
+        /// <returns></returns>
+        public static IDictionary<String, String> FindAllTypes()
+        {
+            //return TypeCache.FindAllName();
+            var list = TypeCache.Entities.ToList().Take(20).ToList();
+
+            var dic = new Dictionary<String, String>();
+            foreach (var entity in list)
+            {
+                var k = entity.Type;
+
+                var v = "{0} ({1:n0})".F(entity.QueryType, entity.ID);
+                dic[k + ""] = v;
+            }
+            return dic;
+        }
+
+        /// <summary>实体缓存，异步，缓存10分钟</summary>
+        static FieldCache<History> NameCache = new FieldCache<History>(_.Name);
+
+        /// <summary>获取所有名称</summary>
+        /// <returns></returns>
+        public static IDictionary<String, String> FindAllNames()
+        {
+            return NameCache.FindAllName();
+        }
+
+        /// <summary>实体缓存，异步，缓存10分钟</summary>
+        static FieldCache<History> UserCache = new FieldCache<History>(_.UserIP);
+
+        /// <summary>获取所有名称</summary>
+        /// <returns></returns>
+        public static IDictionary<String, String> FindAllUsers()
+        {
+            return UserCache.FindAllName();
+        }
         #endregion
 
         #region 业务

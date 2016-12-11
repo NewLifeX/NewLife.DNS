@@ -22,7 +22,7 @@ namespace NewLife.DNS.Web.Controllers
         /// <returns></returns>
         protected override ActionResult IndexView(Pager p)
         {
-            var list = History.Search(p["type"].ToInt(), p["name"], p["address"], p["dtStart"].ToDateTime(), p["dtEnd"].ToDateTime(), p["Q"], p);
+            var list = History.Search(p["type"].ToInt(), p["name"], p["user"], p["dtStart"].ToDateTime(), p["dtEnd"].ToDateTime(), p["Q"], p);
 
             return View("List", list);
         }

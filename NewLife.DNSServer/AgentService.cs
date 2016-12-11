@@ -181,7 +181,7 @@ namespace NewLife.DNS.Server
             hi.Name = rq.Name;
             if (e.Session != null)
             {
-                hi.UserIP = e.Session.Remote.EndPoint + "";
+                hi.UserIP = e.Session.Remote.EndPoint.Address + "";
                 hi.ProtocolType = e.Session.Remote.Type;
             }
             if (rs.Answers != null && rs.Answers.Length > 0)

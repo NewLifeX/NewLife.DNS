@@ -23,7 +23,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
       <Column Name="Type" DataType="Int32" Description="类型" />
-      <Column Name="Address" DataType="String" Length="200" Description="地址" />
+      <Column Name="Address" DataType="String" Description="地址" />
       <Column Name="StartDate" DataType="DateTime" Description="开始日期" />
       <Column Name="EndDate" DataType="DateTime" Description="结束日期" />
       <Column Name="StartTime" DataType="Int32" Description="开始时间" />
@@ -48,7 +48,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Type" DataType="Int32" Description="类型" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
-      <Column Name="Address" DataType="String" Length="200" Description="地址" />
+      <Column Name="Address" DataType="String" Description="地址" />
       <Column Name="TTL" DataType="DateTime" Description="生存时间" />
       <Column Name="Parent" DataType="String" Description="父级" />
       <Column Name="Hits" DataType="Int32" Description="次数" />
@@ -70,9 +70,9 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Type" DataType="Int32" Description="类型" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
-      <Column Name="Address" DataType="String" Length="200" Description="地址" />
-      <Column Name="UserIP" DataType="String" Length="200" Description="用户地址" />
-      <Column Name="Protocol" DataType="Int32" Length="200" Description="协议" />
+      <Column Name="Address" DataType="String" Description="地址" />
+      <Column Name="UserIP" DataType="String" Description="用户地址" />
+      <Column Name="Protocol" DataType="Int32" Description="协议" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建者" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="CreateIP" DataType="String" Description="创建地址" />
@@ -80,6 +80,7 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="Type" />
+      <Index Columns="UserIP" />
     </Indexes>
   </Table>
 </Tables>

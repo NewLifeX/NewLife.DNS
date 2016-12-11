@@ -157,7 +157,49 @@ WriteLiteral("                    ");
 
             
             #line 19 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
-               Write(Html.ForDropDownList("type", System.EnumHelper.GetDescriptions(typeof(QueryType)), Request["type"], "全部", true));
+               Write(Html.ForDropDownList("type", History.FindAllTypes(), Request["type"], "全部", true));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n                <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n                    <label");
+
+WriteLiteral(" for=\"name\"");
+
+WriteLiteral(" class=\"control-label\"");
+
+WriteLiteral(">域名：</label>\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 23 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+               Write(Html.ForDropDownList("name", History.FindAllNames(), Request["name"], "全部", true));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n                <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n                    <label");
+
+WriteLiteral(" for=\"user\"");
+
+WriteLiteral(" class=\"control-label\"");
+
+WriteLiteral(">用户：</label>\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 27 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+               Write(Html.ForDropDownList("user", History.FindAllUsers(), Request["user"], "全部", true));
 
             
             #line default
@@ -190,14 +232,14 @@ WriteLiteral(" name=\"dtStart\"");
 
 WriteLiteral(" id=\"dtStart\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1276), Tuple.Create("\"", 1303)
+WriteAttribute("value", Tuple.Create(" value=\"", 1732), Tuple.Create("\"", 1759)
             
-            #line 25 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
-, Tuple.Create(Tuple.Create("", 1284), Tuple.Create<System.Object, System.Int32>(Request["dtStart"]
+            #line 33 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+, Tuple.Create(Tuple.Create("", 1740), Tuple.Create<System.Object, System.Int32>(Request["dtStart"]
             
             #line default
             #line hidden
-, 1284), false)
+, 1740), false)
 );
 
 WriteLiteral(" dateformat=\"yyyy-MM-dd\"");
@@ -232,14 +274,14 @@ WriteLiteral(" name=\"dtEnd\"");
 
 WriteLiteral(" id=\"dtEnd\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1730), Tuple.Create("\"", 1755)
+WriteAttribute("value", Tuple.Create(" value=\"", 2186), Tuple.Create("\"", 2211)
             
-            #line 32 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
-, Tuple.Create(Tuple.Create("", 1738), Tuple.Create<System.Object, System.Int32>(Request["dtEnd"]
+            #line 40 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+, Tuple.Create(Tuple.Create("", 2194), Tuple.Create<System.Object, System.Int32>(Request["dtEnd"]
             
             #line default
             #line hidden
-, 1738), false)
+, 2194), false)
 );
 
 WriteLiteral(" dateformat=\"yyyy-MM-dd\"");
@@ -266,14 +308,14 @@ WriteLiteral(" type=\"search\"");
 
 WriteLiteral(" id=\"q\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 2116), Tuple.Create("\"", 2137)
+WriteAttribute("value", Tuple.Create(" value=\"", 2572), Tuple.Create("\"", 2593)
             
-            #line 39 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
-, Tuple.Create(Tuple.Create("", 2124), Tuple.Create<System.Object, System.Int32>(Request["q"]
+            #line 47 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+, Tuple.Create(Tuple.Create("", 2580), Tuple.Create<System.Object, System.Int32>(Request["q"]
             
             #line default
             #line hidden
-, 2124), false)
+, 2580), false)
 );
 
 WriteLiteral(" class=\"form-control\"");
@@ -304,7 +346,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 48 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
+            #line 56 "..\..\Areas\DNS\Views\History\_List_Toolbar.cshtml"
                Write(Html.Partial("_List_Toolbar_Adv"));
 
             

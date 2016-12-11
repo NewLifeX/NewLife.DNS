@@ -58,8 +58,8 @@ namespace NewLife.DNS.Entity
         /// <summary>地址</summary>
         [DisplayName("地址")]
         [Description("地址")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(4, "Address", "地址", null, "nvarchar(200)", 0, 0, true)]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(4, "Address", "地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Address
         {
             get { return _Address; }
