@@ -4,7 +4,7 @@
  * 时间：2012-06-27 11:03:06
  * 版权：版权所有 (C) 新生命开发团队 2012
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -91,6 +91,8 @@ namespace NewLife.DNS.Entity
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static Visitor FindByName(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             //if (Meta.Count >= 1000)
             //    return Find(_.Name, name);
             //else // 实体缓存
@@ -105,6 +107,8 @@ namespace NewLife.DNS.Entity
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static Visitor FindByID(Int32 id)
         {
+            if (id <= 0) return null;
+
             //if (Meta.Count >= 1000)
             return Find(_.ID, id);
             //else // 实体缓存
@@ -171,6 +175,8 @@ namespace NewLife.DNS.Entity
         #region 业务
         public static Visitor Check(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             try
             {
                 var entity = FindByName(name);

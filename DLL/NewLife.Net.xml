@@ -526,6 +526,10 @@
             <param name="dns"></param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Net.DNS.DNSClient.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Net.DNS.DNSClient.QueryAll(System.Collections.Generic.IEnumerable{NewLife.Net.DNS.DNSClient},NewLife.Net.DNS.DNSEntity,System.Int32)">
             <summary>使用一批DNS客户端发起请求</summary>
             <param name="clients"></param>

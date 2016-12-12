@@ -141,15 +141,15 @@ namespace NewLife.DNS.Server
             {
                 if (item.QueryType <= 0) continue;
 
-                var r = DNSEntity.CreateRecord((DNSQueryType)item.QueryType);
-                r.Name = item.Name;
-                r.Text = item.Address;
+                var dr = DNSEntity.CreateRecord((DNSQueryType)item.QueryType);
+                dr.Name = item.Name;
+                dr.Text = item.Address;
 
                 // 生产时间过期，并且最后更新时间也过期，才去更新
                 if (item.TTL < now && item.Next < now)
                 {
                     // 生存时间3分钟
-                    r.TTL = new TimeSpan(0, 3, 0);
+                    dr.TTL = new TimeSpan(0, 3, 0);
 
                     // 更新数据库记录，3分钟内不要再次去找
                     item.Next = now.AddMinutes(3);
@@ -159,8 +159,9 @@ namespace NewLife.DNS.Server
                 }
                 else
                 {
-                    r.TTL = item.TTL - now;
-                    drs.Add(r);
+                    dr.TTL = item.TTL - now;
+                    if (dr.TTL.TotalSeconds < 60) dr.TTL = new TimeSpan(0, 10, 0);
+                    drs.Add(dr);
                 }
             }
             // 没有任何满足条件的返回，让它去更新吧
@@ -176,16 +177,17 @@ namespace NewLife.DNS.Server
             var rs = e.Response;
             if (rs == null) return;
 
+            var remote = e.Session?.Remote;
             var rq = rs.Questions[0];
 
             // 记录历史
             var hi = new History();
             hi.Type = (Int32)rq.Type;
             hi.Name = rq.Name;
-            if (e.Session != null)
+            if (remote != null)
             {
-                hi.UserIP = e.Session.Remote.EndPoint.Address + "";
-                hi.ProtocolType = e.Session.Remote.Type;
+                hi.UserIP = remote.EndPoint.Address + "";
+                hi.ProtocolType = remote.Type;
             }
             if (rs.Answers != null && rs.Answers.Length > 0)
             {
@@ -193,18 +195,21 @@ namespace NewLife.DNS.Server
 
                 foreach (var item in rs.Answers)
                 {
-                    var dr = hi.CloneEntity(false);
+                    //var dr = hi.CloneEntity(true);
+                    var dr = new History();
+                    dr.UserIP = hi.UserIP;
+                    dr.ProtocolType = hi.ProtocolType;
                     dr.Type = (Int32)item.Type;
                     dr.Name = item.Name;
                     dr.Address = item.Text;
-                    dr.Insert();
+                    dr.SaveAsync();
                 }
             }
             else
-                hi.Insert();
+                hi.SaveAsync();
 
             // 记录访问者
-            var vt = Visitor.Check(e.Session.Remote.Host);
+            var vt = Visitor.Check(remote?.Host);
             if (vt != null)
             {
                 vt.LastDomainName = rq.Name;
@@ -218,12 +223,17 @@ namespace NewLife.DNS.Server
         void Server_OnNew(object sender, DNSEventArgs e)
         {
             var rs = e.Response;
-            if (rs == null || rs.Answers == null) return;
+            if (rs == null) return;
+
+            var list = new List<DNSRecord>();
+            if (rs.Answers != null) list.AddRange(rs.Answers);
+            if (rs.Authoritis != null) list.AddRange(rs.Authoritis);
+            if (rs.Additionals != null) list.AddRange(rs.Additionals);
 
             var rq = rs.Questions[0];
 
             var now = DateTime.Now;
-            foreach (var dr in rs.Answers)
+            foreach (var dr in list)
             {
                 var entity = Record.FindByQueryTypeAndNameAndAddress((Int32)dr.Type, rq.Name, dr.Text);
                 if (entity == null)
@@ -238,7 +248,7 @@ namespace NewLife.DNS.Server
                 entity.Parent = e.Session.Remote + "";
                 entity.UpdateTime = DateTime.Now;
 
-                entity.Save();
+                entity.SaveAsync();
             }
         }
         #endregion
