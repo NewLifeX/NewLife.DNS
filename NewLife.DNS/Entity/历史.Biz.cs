@@ -4,13 +4,12 @@
  * 时间：2012-06-25 15:19:55
  * 版权：版权所有 (C) 新生命开发团队 2012
 */
+using NewLife.Data;
+using NewLife.Net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Sockets;
-using NewLife.Net;
-using NewLife.Web;
 using XCode;
 using XCode.Cache;
 
@@ -79,21 +78,21 @@ namespace NewLife.DNS.Entity
             if (Meta.Count >= 1000)
                 return Find(_.ID, id);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(_.ID, id);
+                return Meta.Cache.Entities.Find(e => e.ID == id);
             // 单对象缓存
             //return Meta.SingleCache[id];
         }
         #endregion
 
         #region 高级查询
-        public static EntityList<History> Search(Int32 type, String name, String user, DateTime start, DateTime end, String key, Pager p)
+        public static IList<History> Search(Int32 type, String name, String user, DateTime start, DateTime end, String key, PageParameter p)
         {
             var dt = DateTime.Now;
             if (start > DateTime.MinValue)
                 dt = start;
             else if (end > DateTime.MinValue)
                 dt = end;
-            if (!Helper.CheckHistoryDatabase(Meta.Factory, dt)) return new EntityList<History>();
+            if (!Helper.CheckHistoryDatabase(Meta.Factory, dt)) return new List<History>();
 
             var exp = SearchWhereByKeys(key);
 

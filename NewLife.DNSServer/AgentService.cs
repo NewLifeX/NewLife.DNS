@@ -1,36 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using NewLife.Agent;
-using NewLife.Configuration;
+﻿using NewLife.Agent;
 using NewLife.DNS.Entity;
 using NewLife.Log;
-using NewLife.Net.DNS;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NewLife.DNS.Server
 {
     public class AgentService : AgentServiceBase<AgentService>
     {
         #region 属性
-        public override int ThreadCount { get { return 1; } }
-
-        public override string Description { get { return "DNS服务器"; } }
         #endregion
 
         #region 构造函数
         public AgentService()
         {
             ServiceName = "NewLife.DNS";
+            Description = "DNS服务器";
         }
         #endregion
 
         #region 核心
-        public override bool Work(int index) { return false; }
-
         DNSServer Server;
 
-        public override void StartWork()
+        protected override void StartWork(String reason)
         {
             // 修改数据库默认目录
             var xcode = XCode.Setting.Current;
@@ -66,12 +59,12 @@ namespace NewLife.DNS.Server
 
             Server = svr;
 
-            base.StartWork();
+            base.StartWork(reason);
         }
 
-        public override void StopWork()
+        protected override void StopWork(String reason)
         {
-            base.StopWork();
+            base.StopWork(reason);
 
             var svr = Server;
             svr.Stop();

@@ -130,7 +130,7 @@ namespace NewLife.DNS.Entity
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Visitor> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static IList<Visitor> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

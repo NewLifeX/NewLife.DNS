@@ -14,6 +14,7 @@ using NewLife.Web;
 using XCode;
 using XCode.Configuration;
 using System.Net;
+using System.Linq;
 
 namespace NewLife.DNS.Entity
 {
@@ -115,7 +116,7 @@ namespace NewLife.DNS.Entity
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Rule> FindAllByQueryTypeAndName(Int32 type, String name)
+        public static IList<Rule> FindAllByQueryTypeAndName(Int32 type, String name)
         {
             var qtype = (QueryType)type;
             if (Meta.Count >= 1000)
@@ -124,8 +125,8 @@ namespace NewLife.DNS.Entity
                 if (list == null || list.Count < 1) return list;
 
                 var now = DateTime.Now;
-                list.RemoveAll(e => e.IsExpired || !e.Enable);
-                return list;
+                //list.RemoveAll(e => e.IsExpired || !e.Enable);
+                return list.Where(e => !e.IsExpired && e.Enable).ToList();
             }
 
             if (qtype != QueryType.ANY)
@@ -169,7 +170,7 @@ namespace NewLife.DNS.Entity
             if (Meta.Count >= 1000)
                 return Find(_.ID, id);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(_.ID, id);
+                return Meta.Cache.Entities.Find(e => e.ID == id);
             // 单对象缓存
             //return Meta.SingleCache[id];
         }
@@ -187,7 +188,7 @@ namespace NewLife.DNS.Entity
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Rule> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static IList<Rule> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

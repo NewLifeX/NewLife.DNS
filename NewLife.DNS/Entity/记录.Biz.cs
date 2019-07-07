@@ -5,6 +5,7 @@
  * 版权：版权所有 (C) 新生命开发团队 2012
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using XCode;
 
@@ -90,7 +91,7 @@ namespace NewLife.DNS.Entity
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Record> FindAllByQueryTypeAndName(Int32 type, String name)
+        public static IList<Record> FindAllByQueryTypeAndName(Int32 type, String name)
         {
             //if (Meta.Count >= 1000)
             //    return FindAll(new String[] { _.QueryType, _.Name }, new Object[] { querytype, name });
@@ -118,7 +119,7 @@ namespace NewLife.DNS.Entity
         /// <param name="address">地址</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Record> FindAllByQueryTypeAndAddress(QueryType type, String address)
+        public static IList<Record> FindAllByQueryTypeAndAddress(QueryType type, String address)
         {
             if (Meta.Count >= 1000)
                 return FindAll(new String[] { _.Type, _.Address }, new Object[] { type, address });
@@ -145,7 +146,7 @@ namespace NewLife.DNS.Entity
             if (Meta.Count >= 1000)
                 return Find(_.ID, id);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(_.ID, id);
+                return Meta.Cache.Entities.Find(e => e.ID == id);
             // 单对象缓存
             //return Meta.SingleCache[id];
         }
@@ -163,7 +164,7 @@ namespace NewLife.DNS.Entity
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Record> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static IList<Record> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}
